@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="orderLineItem">
+            <h2><span jhiTranslate="goodsorderApp.orderLineItem.detail.title">Order Line Item</span> {{orderLineItem.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.referenceUrl">Reference Url</span></dt>
+                <dd>
+                    <span>{{orderLineItem.referenceUrl}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.originPrice">Origin Price</span></dt>
+                <dd>
+                    <span>{{orderLineItem.originPrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.salePrice">Sale Price</span></dt>
+                <dd>
+                    <span>{{orderLineItem.salePrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.tax">Tax</span></dt>
+                <dd>
+                    <span>{{orderLineItem.tax}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.goodsName">Goods Name</span></dt>
+                <dd>
+                    <span>{{orderLineItem.goodsName}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.goodsId">Goods Id</span></dt>
+                <dd>
+                    <span>{{orderLineItem.goodsId}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.goodsSKU">Goods SKU</span></dt>
+                <dd>
+                    <span>{{orderLineItem.goodsSKU}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.size">Size</span></dt>
+                <dd>
+                    <span>{{orderLineItem.size}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.remark">Remark</span></dt>
+                <dd>
+                    <span>{{orderLineItem.remark}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.images">Images</span></dt>
+                <dd>
+                    <div *ngIf="orderLineItem.images">
+                        <a (click)="openFile(orderLineItem.imagesContentType, orderLineItem.images)" jhiTranslate="entity.action.open">open</a>
+                        {{orderLineItem.imagesContentType}}, {{byteSize(orderLineItem.images)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.source">Source</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'goodsorderApp.OrderSource.' + orderLineItem.source}}">{{orderLineItem.source}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.order">Order</span></dt>
+                <dd>
+                    <div *ngIf="orderLineItem.order">
+                        <a [routerLink]="['/order', orderLineItem.order?.id, 'view']">{{orderLineItem.order?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order-line-item', orderLineItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

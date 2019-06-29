@@ -1,0 +1,108 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-order-heading" jhiTranslate="goodsorderApp.order.home.createOrEditLabel">Create or edit a Order</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!order.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.orderDate" for="field_orderDate">Order Date</label>
+                    <div class="d-flex">
+                        <input id="field_orderDate" type="datetime-local" class="form-control" name="orderDate" formControlName="orderDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.status" for="field_status">Status</label>
+                    <select class="form-control" name="status" formControlName="status" id="field_status">
+                        <option value="PENDING">{{'goodsorderApp.OrderStatus.PENDING' | translate}}</option>
+                        <option value="CONFIRMED">{{'goodsorderApp.OrderStatus.CONFIRMED' | translate}}</option>
+                        <option value="DEPOSITED">{{'goodsorderApp.OrderStatus.DEPOSITED' | translate}}</option>
+                        <option value="PAID">{{'goodsorderApp.OrderStatus.PAID' | translate}}</option>
+                    </select>
+                    <div *ngIf="editForm.get('status').invalid && (editForm.get('status').dirty || editForm.get('status').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('status').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.deliveryStatus" for="field_deliveryStatus">Delivery Status</label>
+                    <select class="form-control" name="deliveryStatus" formControlName="deliveryStatus" id="field_deliveryStatus">
+                        <option value="INIT">{{'goodsorderApp.DeliveryStatus.INIT' | translate}}</option>
+                        <option value="PICKED_UP">{{'goodsorderApp.DeliveryStatus.PICKED_UP' | translate}}</option>
+                        <option value="ON_BOARDING">{{'goodsorderApp.DeliveryStatus.ON_BOARDING' | translate}}</option>
+                        <option value="ARRIVED">{{'goodsorderApp.DeliveryStatus.ARRIVED' | translate}}</option>
+                        <option value="SENDING">{{'goodsorderApp.DeliveryStatus.SENDING' | translate}}</option>
+                        <option value="DONE">{{'goodsorderApp.DeliveryStatus.DONE' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.exchangeRateId" for="field_exchangeRateId">Exchange Rate Id</label>
+                    <input type="text" class="form-control" name="exchangeRateId" id="field_exchangeRateId"
+                           formControlName="exchangeRateId"/>
+                    <div *ngIf="editForm.get('exchangeRateId').invalid && (editForm.get('exchangeRateId').dirty || editForm.get('exchangeRateId').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('exchangeRateId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.remark" for="field_remark">Remark</label>
+                    <input type="text" class="form-control" name="remark" id="field_remark"
+                           formControlName="remark"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.lastUpdatedAt" for="field_lastUpdatedAt">Last Updated At</label>
+                    <div class="d-flex">
+                        <input id="field_lastUpdatedAt" type="datetime-local" class="form-control" name="lastUpdatedAt" formControlName="lastUpdatedAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.createdBy" for="field_createdBy">Created By</label>
+                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                           formControlName="createdBy"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.lastUpdatedBy" for="field_lastUpdatedBy">Last Updated By</label>
+                    <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                           formControlName="lastUpdatedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.order.merchant" for="field_merchant">Merchant</label>
+                    <select class="form-control" id="field_merchant" name="merchant" formControlName="merchant">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('merchant').value?.id ? editForm.get('merchant').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

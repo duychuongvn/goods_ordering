@@ -1,0 +1,13 @@
+{
+  "goodsorderApp": {
+    "DeliveryStatus": {
+      "null": "",
+      "INIT": "INIT",
+      "PICKED_UP": "PICKED_UP",
+      "ON_BOARDING": "ON_BOARDING",
+      "ARRIVED": "ARRIVED",
+      "SENDING": "SENDING",
+      "DONE": "DONE"
+    }
+  }
+}

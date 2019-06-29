@@ -1,0 +1,27 @@
+{
+  "goodsorderApp": {
+    "orderTracking": {
+      "home": {
+        "title": "Order Trackings",
+        "createLabel": "Thêm mới một Order Tracking",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Order Tracking"
+      },
+      "created": "Một Order Tracking mới được tạo với định danh {{ param }}",
+      "updated": "Một Order Tracking cập nhật với định danh {{ param }}",
+      "deleted": "Một Order Tracking đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Order Tracking {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Tracking"
+      },
+      "deliveryStatus": "Delivery Status",
+      "dateTime": "Date Time",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By",
+      "order": "Order"
+    }
+  }
+}

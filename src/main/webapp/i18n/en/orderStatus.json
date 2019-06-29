@@ -1,0 +1,11 @@
+{
+  "goodsorderApp": {
+    "OrderStatus": {
+      "null": "",
+      "PENDING": "PENDING",
+      "CONFIRMED": "CONFIRMED",
+      "DEPOSITED": "DEPOSITED",
+      "PAID": "PAID"
+    }
+  }
+}

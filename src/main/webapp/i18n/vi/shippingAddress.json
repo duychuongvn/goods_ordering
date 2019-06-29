@@ -1,0 +1,35 @@
+{
+  "goodsorderApp": {
+    "shippingAddress": {
+      "home": {
+        "title": "Shipping Addresses",
+        "createLabel": "Thêm mới một Shipping Address",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Shipping Address"
+      },
+      "created": "Một Shipping Address mới được tạo với định danh {{ param }}",
+      "updated": "Một Shipping Address cập nhật với định danh {{ param }}",
+      "deleted": "Một Shipping Address đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Shipping Address {{ id }}?"
+      },
+      "detail": {
+        "title": "Shipping Address"
+      },
+      "address1": "Address 1",
+      "address2": "Address 2",
+      "phone1": "Phone 1",
+      "phone2": "Phone 2",
+      "email1": "Email 1",
+      "email2": "Email 2",
+      "zipCode": "Zip Code",
+      "city": "City",
+      "district": "District",
+      "defaultAddress": "Default Address",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By",
+      "user": "User"
+    }
+  }
+}

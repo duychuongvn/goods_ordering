@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="orderTracking">
+            <h2><span jhiTranslate="goodsorderApp.orderTracking.detail.title">Order Tracking</span> {{orderTracking.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.orderTracking.deliveryStatus">Delivery Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'goodsorderApp.DeliveryStatus.' + orderTracking.deliveryStatus}}">{{orderTracking.deliveryStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderTracking.dateTime">Date Time</span></dt>
+                <dd>
+                    <span>{{orderTracking.dateTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderTracking.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{orderTracking.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderTracking.lastUpdatedAt">Last Updated At</span></dt>
+                <dd>
+                    <span>{{orderTracking.lastUpdatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderTracking.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{orderTracking.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderTracking.lastUpdatedBy">Last Updated By</span></dt>
+                <dd>
+                    <span>{{orderTracking.lastUpdatedBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderTracking.order">Order</span></dt>
+                <dd>
+                    <div *ngIf="orderTracking.order">
+                        <a [routerLink]="['/order', orderTracking.order?.id, 'view']">{{orderTracking.order?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order-tracking', orderTracking.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

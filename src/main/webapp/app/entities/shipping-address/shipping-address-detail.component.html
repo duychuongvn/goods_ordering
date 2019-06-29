@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="shippingAddress">
+            <h2><span jhiTranslate="goodsorderApp.shippingAddress.detail.title">Shipping Address</span> {{shippingAddress.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.address1">Address 1</span></dt>
+                <dd>
+                    <span>{{shippingAddress.address1}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.address2">Address 2</span></dt>
+                <dd>
+                    <span>{{shippingAddress.address2}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.phone1">Phone 1</span></dt>
+                <dd>
+                    <span>{{shippingAddress.phone1}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.phone2">Phone 2</span></dt>
+                <dd>
+                    <span>{{shippingAddress.phone2}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.email1">Email 1</span></dt>
+                <dd>
+                    <span>{{shippingAddress.email1}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.email2">Email 2</span></dt>
+                <dd>
+                    <span>{{shippingAddress.email2}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.zipCode">Zip Code</span></dt>
+                <dd>
+                    <span>{{shippingAddress.zipCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.city">City</span></dt>
+                <dd>
+                    <span>{{shippingAddress.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.district">District</span></dt>
+                <dd>
+                    <span>{{shippingAddress.district}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.defaultAddress">Default Address</span></dt>
+                <dd>
+                    <span>{{shippingAddress.defaultAddress}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{shippingAddress.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.lastUpdatedAt">Last Updated At</span></dt>
+                <dd>
+                    <span>{{shippingAddress.lastUpdatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{shippingAddress.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.lastUpdatedBy">Last Updated By</span></dt>
+                <dd>
+                    <span>{{shippingAddress.lastUpdatedBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.shippingAddress.user">User</span></dt>
+                <dd>
+                    {{shippingAddress.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/shipping-address', shippingAddress.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

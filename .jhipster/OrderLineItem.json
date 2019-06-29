@@ -1,0 +1,71 @@
+{
+    "name": "OrderLineItem",
+    "fields": [
+        {
+            "fieldName": "referenceUrl",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "originPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "salePrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "tax",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "goodsName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "goodsId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "goodsSKU",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "size",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remark",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "images",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "source",
+            "fieldType": "OrderSource",
+            "fieldValues": "AEO_JP,ABC_MART"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "order",
+            "otherEntityName": "order",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190629044417",
+    "entityTableName": "order_line_item",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

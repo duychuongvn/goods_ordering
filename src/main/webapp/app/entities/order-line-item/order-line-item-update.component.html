@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-order-line-item-heading" jhiTranslate="goodsorderApp.orderLineItem.home.createOrEditLabel">Create or edit a Order Line Item</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!orderLineItem.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.referenceUrl" for="field_referenceUrl">Reference Url</label>
+                    <input type="text" class="form-control" name="referenceUrl" id="field_referenceUrl"
+                           formControlName="referenceUrl"/>
+                    <div *ngIf="editForm.get('referenceUrl').invalid && (editForm.get('referenceUrl').dirty || editForm.get('referenceUrl').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('referenceUrl').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.originPrice" for="field_originPrice">Origin Price</label>
+                    <input type="number" class="form-control" name="originPrice" id="field_originPrice"
+                           formControlName="originPrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.salePrice" for="field_salePrice">Sale Price</label>
+                    <input type="number" class="form-control" name="salePrice" id="field_salePrice"
+                           formControlName="salePrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.tax" for="field_tax">Tax</label>
+                    <input type="number" class="form-control" name="tax" id="field_tax"
+                           formControlName="tax"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.goodsName" for="field_goodsName">Goods Name</label>
+                    <input type="text" class="form-control" name="goodsName" id="field_goodsName"
+                           formControlName="goodsName"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.goodsId" for="field_goodsId">Goods Id</label>
+                    <input type="text" class="form-control" name="goodsId" id="field_goodsId"
+                           formControlName="goodsId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.goodsSKU" for="field_goodsSKU">Goods SKU</label>
+                    <input type="text" class="form-control" name="goodsSKU" id="field_goodsSKU"
+                           formControlName="goodsSKU"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.size" for="field_size">Size</label>
+                    <input type="text" class="form-control" name="size" id="field_size"
+                           formControlName="size"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.remark" for="field_remark">Remark</label>
+                    <input type="text" class="form-control" name="remark" id="field_remark"
+                           formControlName="remark"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.images" for="field_images">Images</label>
+                    <div>
+                        <div *ngIf="editForm.get('images').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('imagesContentType').value, editForm.get('images').value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{editForm.get('imagesContentType').value}}, {{byteSize(editForm.get('images').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({images: null});editForm.patchValue({imagesContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_images" (change)="setFileData($event, 'images', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="images" id="field_images"
+                           formControlName="images"/>
+                    <input type="hidden" class="form-control" name="imagesContentType" id="field_imagesContentType"
+                           formControlName="imagesContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.source" for="field_source">Source</label>
+                    <select class="form-control" name="source" formControlName="source" id="field_source">
+                        <option value="AEO_JP">{{'goodsorderApp.OrderSource.AEO_JP' | translate}}</option>
+                        <option value="ABC_MART">{{'goodsorderApp.OrderSource.ABC_MART' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderLineItem.order" for="field_order">Order</label>
+                    <select class="form-control" id="field_order" name="order" formControlName="order">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="orderOption.id === editForm.get('order').value?.id ? editForm.get('order').value : orderOption" *ngFor="let orderOption of orders; trackBy: trackOrderById">{{orderOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

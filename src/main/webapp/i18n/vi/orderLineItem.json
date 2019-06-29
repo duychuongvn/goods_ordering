@@ -1,0 +1,32 @@
+{
+  "goodsorderApp": {
+    "orderLineItem": {
+      "home": {
+        "title": "Order Line Items",
+        "createLabel": "Thêm mới một Order Line Item",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Order Line Item"
+      },
+      "created": "Một Order Line Item mới được tạo với định danh {{ param }}",
+      "updated": "Một Order Line Item cập nhật với định danh {{ param }}",
+      "deleted": "Một Order Line Item đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Order Line Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Line Item"
+      },
+      "referenceUrl": "Reference Url",
+      "originPrice": "Origin Price",
+      "salePrice": "Sale Price",
+      "tax": "Tax",
+      "goodsName": "Goods Name",
+      "goodsId": "Goods Id",
+      "goodsSKU": "Goods SKU",
+      "size": "Size",
+      "remark": "Remark",
+      "images": "Images",
+      "source": "Source",
+      "order": "Order"
+    }
+  }
+}

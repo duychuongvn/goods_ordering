@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="exchangeRate">
+            <h2><span jhiTranslate="goodsorderApp.exchangeRate.detail.title">Exchange Rate</span> {{exchangeRate.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.exchangeRate.rate">Rate</span></dt>
+                <dd>
+                    <span>{{exchangeRate.rate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.exchangeRate.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{exchangeRate.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.exchangeRate.lastUpdatedAt">Last Updated At</span></dt>
+                <dd>
+                    <span>{{exchangeRate.lastUpdatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.exchangeRate.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{exchangeRate.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.exchangeRate.lastUpdatedBy">Last Updated By</span></dt>
+                <dd>
+                    <span>{{exchangeRate.lastUpdatedBy}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/exchange-rate', exchangeRate.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

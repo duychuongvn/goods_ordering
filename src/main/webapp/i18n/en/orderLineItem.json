@@ -1,0 +1,32 @@
+{
+  "goodsorderApp": {
+    "orderLineItem": {
+      "home": {
+        "title": "Order Line Items",
+        "createLabel": "Create a new Order Line Item",
+        "createOrEditLabel": "Create or edit a Order Line Item"
+      },
+      "created": "A new Order Line Item is created with identifier {{ param }}",
+      "updated": "A Order Line Item is updated with identifier {{ param }}",
+      "deleted": "A Order Line Item is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Order Line Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Line Item"
+      },
+      "referenceUrl": "Reference Url",
+      "originPrice": "Origin Price",
+      "salePrice": "Sale Price",
+      "tax": "Tax",
+      "goodsName": "Goods Name",
+      "goodsId": "Goods Id",
+      "goodsSKU": "Goods SKU",
+      "size": "Size",
+      "remark": "Remark",
+      "images": "Images",
+      "source": "Source",
+      "order": "Order"
+    }
+  }
+}

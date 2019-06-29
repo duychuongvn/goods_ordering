@@ -1,0 +1,86 @@
+{
+    "name": "Order",
+    "fields": [
+        {
+            "fieldName": "orderDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "OrderStatus",
+            "fieldValues": "PENDING,CONFIRMED,DEPOSITED,PAID",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "deliveryStatus",
+            "fieldType": "DeliveryStatus",
+            "fieldValues": "INIT,PICKED_UP,ON_BOARDING,ARRIVED,SENDING,DONE"
+        },
+        {
+            "fieldName": "exchangeRateId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "remark",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "lastUpdatedAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "orderLineItem",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "orderLineItems"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "orderTracking",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "orderTrackings"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "merchant",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190629044415",
+    "entityTableName": "order",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

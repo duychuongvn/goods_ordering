@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="order">
+            <h2><span jhiTranslate="goodsorderApp.order.detail.title">Order</span> {{order.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.order.orderDate">Order Date</span></dt>
+                <dd>
+                    <span>{{order.orderDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'goodsorderApp.OrderStatus.' + order.status}}">{{order.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.deliveryStatus">Delivery Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'goodsorderApp.DeliveryStatus.' + order.deliveryStatus}}">{{order.deliveryStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.exchangeRateId">Exchange Rate Id</span></dt>
+                <dd>
+                    <span>{{order.exchangeRateId}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.remark">Remark</span></dt>
+                <dd>
+                    <span>{{order.remark}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{order.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.lastUpdatedAt">Last Updated At</span></dt>
+                <dd>
+                    <span>{{order.lastUpdatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{order.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.lastUpdatedBy">Last Updated By</span></dt>
+                <dd>
+                    <span>{{order.lastUpdatedBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.user">User</span></dt>
+                <dd>
+                    {{order.user?.id}}
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.merchant">Merchant</span></dt>
+                <dd>
+                    {{order.merchant?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order', order.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

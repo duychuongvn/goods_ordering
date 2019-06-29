@@ -1,0 +1,9 @@
+{
+  "goodsorderApp": {
+    "OrderSource": {
+      "null": "",
+      "AEO_JP": "AEO_JP",
+      "ABC_MART": "ABC_MART"
+    }
+  }
+}

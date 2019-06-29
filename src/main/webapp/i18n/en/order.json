@@ -1,0 +1,33 @@
+{
+  "goodsorderApp": {
+    "order": {
+      "home": {
+        "title": "Orders",
+        "createLabel": "Create a new Order",
+        "createOrEditLabel": "Create or edit a Order"
+      },
+      "created": "A new Order is created with identifier {{ param }}",
+      "updated": "A Order is updated with identifier {{ param }}",
+      "deleted": "A Order is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Order {{ id }}?"
+      },
+      "detail": {
+        "title": "Order"
+      },
+      "orderDate": "Order Date",
+      "status": "Status",
+      "deliveryStatus": "Delivery Status",
+      "exchangeRateId": "Exchange Rate Id",
+      "remark": "Remark",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By",
+      "orderLineItems": "Order Line Items",
+      "orderTrackings": "Order Trackings",
+      "user": "User",
+      "merchant": "Merchant"
+    }
+  }
+}

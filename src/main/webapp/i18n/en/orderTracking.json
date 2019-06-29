@@ -1,0 +1,27 @@
+{
+  "goodsorderApp": {
+    "orderTracking": {
+      "home": {
+        "title": "Order Trackings",
+        "createLabel": "Create a new Order Tracking",
+        "createOrEditLabel": "Create or edit a Order Tracking"
+      },
+      "created": "A new Order Tracking is created with identifier {{ param }}",
+      "updated": "A Order Tracking is updated with identifier {{ param }}",
+      "deleted": "A Order Tracking is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Order Tracking {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Tracking"
+      },
+      "deliveryStatus": "Delivery Status",
+      "dateTime": "Date Time",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By",
+      "order": "Order"
+    }
+  }
+}

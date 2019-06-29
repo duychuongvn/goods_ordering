@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.github.duychuongvn.goodsorder",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.0.1",
+    "applicationType": "monolith",
+    "baseName": "goodsorder",
+    "packageName": "com.github.duychuongvn.goodsorder",
+    "packageFolder": "com/github/duychuongvn/goodsorder",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NWE1YzIzZTU2NmI3MjYxMWZmZmUzZTQyMTExNDFmYTg3YjdlM2Y1MDczMWRmM2IwYWM3MjMzN2ExY2FiYTlkNzMzNzhlZjIwZDAyYWMwNGNmYjZkYjgxOWY2M2ZlMjM4OTUxOTgyZTIyOTFkNTU3NWUyOGU4NjdiYzcyZmM5Yzk=",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": ["gatling"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "vi"]
+  }
+}
