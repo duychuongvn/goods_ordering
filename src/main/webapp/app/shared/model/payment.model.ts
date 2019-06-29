@@ -1,4 +1,5 @@
 import { Moment } from 'moment';
+import { IOrder } from 'app/shared/model/order.model';
 import { ITransaction } from 'app/shared/model/transaction.model';
 
 export const enum PaymentStatus {
@@ -21,6 +22,7 @@ export interface IPayment {
   lastUpdatedAt?: Moment;
   createdBy?: string;
   lastUpdatedBy?: string;
+  order?: IOrder;
   transactions?: ITransaction[];
 }
 
@@ -38,6 +40,7 @@ export class Payment implements IPayment {
     public lastUpdatedAt?: Moment,
     public createdBy?: string,
     public lastUpdatedBy?: string,
+    public order?: IOrder,
     public transactions?: ITransaction[]
   ) {}
 }

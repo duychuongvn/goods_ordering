@@ -72,6 +72,13 @@
                            formControlName="lastUpdatedBy"/>
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.order" for="field_order">Order</label>
+                    <select class="form-control" id="field_order" name="order" formControlName="order">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="orderOption.id === editForm.get('order').value?.id ? editForm.get('order').value : orderOption" *ngFor="let orderOption of orders; trackBy: trackOrderById">{{orderOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

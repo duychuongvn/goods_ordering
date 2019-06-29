@@ -74,6 +74,7 @@ public class OrderLineItemResource {
         Order order = (Order) session.getAttribute(Constants.SESSION_KEY_ORDER);
         if(order == null) {
             order = new Order();
+            order.setPaymentCode("OR00000001");//todo
             order.setExchangeRateId("20190630");
             order.setStatus(OrderStatus.PENDING);
             order.setDeliveryStatus(DeliveryStatus.INIT);

@@ -3,10 +3,14 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { JhiAlertService } from 'ng-jhipster';
 import { IPayment, Payment } from 'app/shared/model/payment.model';
 import { PaymentService } from './payment.service';
+import { IOrder } from 'app/shared/model/order.model';
+import { OrderService } from 'app/entities/order';
 
 @Component({
   selector: 'jhi-payment-update',
@@ -15,6 +19,8 @@ import { PaymentService } from './payment.service';
 export class PaymentUpdateComponent implements OnInit {
   payment: IPayment;
   isSaving: boolean;
+
+  orders: IOrder[];
 
   editForm = this.fb.group({
     id: [],
@@ -28,10 +34,17 @@ export class PaymentUpdateComponent implements OnInit {
     createdAt: [],
     lastUpdatedAt: [],
     createdBy: [],
-    lastUpdatedBy: []
+    lastUpdatedBy: [],
+    order: []
   });
 
-  constructor(protected paymentService: PaymentService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected jhiAlertService: JhiAlertService,
+    protected paymentService: PaymentService,
+    protected orderService: OrderService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.isSaving = false;
@@ -39,6 +52,31 @@ export class PaymentUpdateComponent implements OnInit {
       this.updateForm(payment);
       this.payment = payment;
     });
+    this.orderService
+      .query({ filter: 'payment-is-null' })
+      .pipe(
+        filter((mayBeOk: HttpResponse<IOrder[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IOrder[]>) => response.body)
+      )
+      .subscribe(
+        (res: IOrder[]) => {
+          if (!this.payment.order || !this.payment.order.id) {
+            this.orders = res;
+          } else {
+            this.orderService
+              .find(this.payment.order.id)
+              .pipe(
+                filter((subResMayBeOk: HttpResponse<IOrder>) => subResMayBeOk.ok),
+                map((subResponse: HttpResponse<IOrder>) => subResponse.body)
+              )
+              .subscribe(
+                (subRes: IOrder) => (this.orders = [subRes].concat(res)),
+                (subRes: HttpErrorResponse) => this.onError(subRes.message)
+              );
+          }
+        },
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
   }
 
   updateForm(payment: IPayment) {
@@ -54,7 +92,8 @@ export class PaymentUpdateComponent implements OnInit {
       createdAt: payment.createdAt != null ? payment.createdAt.format(DATE_TIME_FORMAT) : null,
       lastUpdatedAt: payment.lastUpdatedAt != null ? payment.lastUpdatedAt.format(DATE_TIME_FORMAT) : null,
       createdBy: payment.createdBy,
-      lastUpdatedBy: payment.lastUpdatedBy
+      lastUpdatedBy: payment.lastUpdatedBy,
+      order: payment.order
     });
   }
 
@@ -90,7 +129,8 @@ export class PaymentUpdateComponent implements OnInit {
           ? moment(this.editForm.get(['lastUpdatedAt']).value, DATE_TIME_FORMAT)
           : undefined,
       createdBy: this.editForm.get(['createdBy']).value,
-      lastUpdatedBy: this.editForm.get(['lastUpdatedBy']).value
+      lastUpdatedBy: this.editForm.get(['lastUpdatedBy']).value,
+      order: this.editForm.get(['order']).value
     };
     return entity;
   }
@@ -106,5 +146,12 @@ export class PaymentUpdateComponent implements OnInit {
 
   protected onSaveError() {
     this.isSaving = false;
+  }
+  protected onError(errorMessage: string) {
+    this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackOrderById(index: number, item: IOrder) {
+    return item.id;
   }
 }

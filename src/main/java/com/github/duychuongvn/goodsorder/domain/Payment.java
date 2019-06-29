@@ -64,6 +64,10 @@ public class Payment implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Order order;
+
     @OneToMany(mappedBy = "payment")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Transaction> transactions = new HashSet<>();
@@ -218,6 +222,19 @@ public class Payment implements Serializable {
 
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public Payment order(Order order) {
+        this.order = order;
+        return this;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Set<Transaction> getTransactions() {

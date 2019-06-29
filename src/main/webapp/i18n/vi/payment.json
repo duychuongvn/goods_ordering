@@ -26,6 +26,7 @@
       "lastUpdatedAt": "Last Updated At",
       "createdBy": "Created By",
       "lastUpdatedBy": "Last Updated By",
+      "order": "Order",
       "transactions": "Transactions"
     }
   }

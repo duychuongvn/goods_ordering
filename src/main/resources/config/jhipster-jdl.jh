@@ -146,6 +146,7 @@ entity ExchangeRate {
 
 relationship OneToOne {
     Order {payment} to Payment
+    Payment {order} to Order
 }
 relationship ManyToOne {
 	Order {user} to User

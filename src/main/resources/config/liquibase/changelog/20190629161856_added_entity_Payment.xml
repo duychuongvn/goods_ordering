@@ -59,7 +59,9 @@
             <column name="last_updated_by" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
+            <column name="order_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_payment_order_id" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
@@ -67,6 +69,36 @@
         <dropDefaultValue tableName="payment" columnName="created_at" columnDataType="datetime"/>
         <dropDefaultValue tableName="payment" columnName="last_updated_at" columnDataType="datetime"/>
     </changeSet>
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20190629161856-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/data/payment.csv"
+                  separator=";"
+                  tableName="payment"
+                  context="dev">
+            <column name="id" type="numeric"/>
+            <column name="payment_code" type="string"/>
+            <column name="payment_status" type="string"/>
+            <column name="received_amount" type="numeric"/>
+            <column name="paid_time" type="date"/>
+            <column name="bank_account" type="string"/>
+            <column name="bank_account_holder" type="string"/>
+            <column name="bank_info" type="string"/>
+            <column name="created_at" type="date"/>
+            <column name="last_updated_at" type="date"/>
+            <column name="created_by" type="string"/>
+            <column name="last_updated_by" type="string"/>
+        </loadData>
+    </changeSet>
+
     <changeSet id="20190629161856-1-relations" author="jhipster">
 
     </changeSet>
