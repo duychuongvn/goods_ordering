@@ -19,10 +19,12 @@
             <th><span jhiTranslate="goodsorderApp.orderLineItem.originPrice">Origin Price</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.salePrice">Sale Price</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.tax">Tax</span></th>
+            <th><span jhiTranslate="goodsorderApp.orderLineItem.totalPay">Total Pay</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.goodsName">Goods Name</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.goodsId">Goods Id</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.goodsSKU">Goods SKU</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.size">Size</span></th>
+            <th><span jhiTranslate="goodsorderApp.orderLineItem.quantity">Quantity</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.remark">Remark</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.images">Images</span></th>
             <th><span jhiTranslate="goodsorderApp.orderLineItem.source">Source</span></th>
@@ -37,10 +39,12 @@
                 <td>{{orderLineItem.originPrice}}</td>
                 <td>{{orderLineItem.salePrice}}</td>
                 <td>{{orderLineItem.tax}}</td>
+                <td>{{orderLineItem.totalPay}}</td>
                 <td>{{orderLineItem.goodsName}}</td>
                 <td>{{orderLineItem.goodsId}}</td>
                 <td>{{orderLineItem.goodsSKU}}</td>
                 <td>{{orderLineItem.size}}</td>
+                <td>{{orderLineItem.quantity}}</td>
                 <td>{{orderLineItem.remark}}</td>
                 <td>
                     <div *ngIf="orderLineItem.images">

@@ -11,6 +11,10 @@
             "fieldType": "ZonedDateTime"
         },
         {
+            "fieldName": "remark",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "createdAt",
             "fieldType": "ZonedDateTime"
         },

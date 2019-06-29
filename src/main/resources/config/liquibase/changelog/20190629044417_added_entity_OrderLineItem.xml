@@ -32,6 +32,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="total_pay" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="goods_name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -45,6 +49,10 @@
             </column>
 
             <column name="jhi_size" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="quantity" type="integer">
                 <constraints nullable="true" />
             </column>
 

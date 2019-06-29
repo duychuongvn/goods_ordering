@@ -37,11 +37,8 @@ public class ShippingAddress implements Serializable {
     @Column(name = "phone_2")
     private String phone2;
 
-    @Column(name = "email_1")
-    private String email1;
-
-    @Column(name = "email_2")
-    private String email2;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "zip_code")
     private String zipCode;
@@ -132,30 +129,17 @@ public class ShippingAddress implements Serializable {
         this.phone2 = phone2;
     }
 
-    public String getEmail1() {
-        return email1;
+    public String getEmail() {
+        return email;
     }
 
-    public ShippingAddress email1(String email1) {
-        this.email1 = email1;
+    public ShippingAddress email(String email) {
+        this.email = email;
         return this;
     }
 
-    public void setEmail1(String email1) {
-        this.email1 = email1;
-    }
-
-    public String getEmail2() {
-        return email2;
-    }
-
-    public ShippingAddress email2(String email2) {
-        this.email2 = email2;
-        return this;
-    }
-
-    public void setEmail2(String email2) {
-        this.email2 = email2;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getZipCode() {
@@ -300,8 +284,7 @@ public class ShippingAddress implements Serializable {
             ", address2='" + getAddress2() + "'" +
             ", phone1='" + getPhone1() + "'" +
             ", phone2='" + getPhone2() + "'" +
-            ", email1='" + getEmail1() + "'" +
-            ", email2='" + getEmail2() + "'" +
+            ", email='" + getEmail() + "'" +
             ", zipCode='" + getZipCode() + "'" +
             ", city='" + getCity() + "'" +
             ", district='" + getDistrict() + "'" +

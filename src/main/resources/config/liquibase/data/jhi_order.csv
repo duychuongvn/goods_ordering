@@ -1,1 +1,1 @@
-id;order_date;status;delivery_status;exchange_rate_id;remark;created_at;last_updated_at;created_by;last_updated_by
+id;payment_code;order_date;status;delivery_status;exchange_rate_id;exchange_rate;total_jpy_price;delivery_fee_vnd;total_pay_vnd;deposited_vnd;paid_vnd;packing_date;estimated_deliver_date;delivered_date;finish_payment_time;remark;address_1;address_2;phone_1;phone_2;email;zip_code;city;district;created_at;last_updated_at;created_by;last_updated_by

@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-transaction-heading" jhiTranslate="goodsorderApp.transaction.home.createOrEditLabel">Create or edit a Transaction</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!transaction.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.transactionType" for="field_transactionType">Transaction Type</label>
+                    <select class="form-control" name="transactionType" formControlName="transactionType" id="field_transactionType">
+                        <option value="DEPOSIT">{{'goodsorderApp.TransactionType.DEPOSIT' | translate}}</option>
+                        <option value="PARTIAL">{{'goodsorderApp.TransactionType.PARTIAL' | translate}}</option>
+                        <option value="FULL">{{'goodsorderApp.TransactionType.FULL' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.transactionDate" for="field_transactionDate">Transaction Date</label>
+                    <div class="d-flex">
+                        <input id="field_transactionDate" type="datetime-local" class="form-control" name="transactionDate" formControlName="transactionDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.amount" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="field_amount"
+                           formControlName="amount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.paymentMethod" for="field_paymentMethod">Payment Method</label>
+                    <select class="form-control" name="paymentMethod" formControlName="paymentMethod" id="field_paymentMethod">
+                        <option value="BANK_TRANSFER">{{'goodsorderApp.PaymentMethod.BANK_TRANSFER' | translate}}</option>
+                        <option value="CASH">{{'goodsorderApp.PaymentMethod.CASH' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.lastUpdatedAt" for="field_lastUpdatedAt">Last Updated At</label>
+                    <div class="d-flex">
+                        <input id="field_lastUpdatedAt" type="datetime-local" class="form-control" name="lastUpdatedAt" formControlName="lastUpdatedAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.createdBy" for="field_createdBy">Created By</label>
+                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                           formControlName="createdBy"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.lastUpdatedBy" for="field_lastUpdatedBy">Last Updated By</label>
+                    <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                           formControlName="lastUpdatedBy"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.transaction.payment" for="field_payment">Payment</label>
+                    <select class="form-control" id="field_payment" name="payment" formControlName="payment">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="paymentOption.id === editForm.get('payment').value?.id ? editForm.get('payment').value : paymentOption" *ngFor="let paymentOption of payments; trackBy: trackPaymentById">{{paymentOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

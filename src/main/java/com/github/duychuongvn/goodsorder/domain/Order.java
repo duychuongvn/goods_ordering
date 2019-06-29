@@ -10,6 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +35,10 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Column(name = "payment_code", nullable = false)
+    private String paymentCode;
+
     @Column(name = "order_date")
     private ZonedDateTime orderDate;
 
@@ -49,8 +55,62 @@ public class Order implements Serializable {
     @Column(name = "exchange_rate_id", nullable = false)
     private String exchangeRateId;
 
+    @Column(name = "exchange_rate", precision = 21, scale = 2)
+    private BigDecimal exchangeRate;
+
+    @Column(name = "total_jpy_price", precision = 21, scale = 2)
+    private BigDecimal totalJpyPrice;
+
+    @Column(name = "delivery_fee_vnd", precision = 21, scale = 2)
+    private BigDecimal deliveryFeeVnd;
+
+    @Column(name = "total_pay_vnd", precision = 21, scale = 2)
+    private BigDecimal totalPayVnd;
+
+    @Column(name = "deposited_vnd", precision = 21, scale = 2)
+    private BigDecimal depositedVnd;
+
+    @Column(name = "paid_vnd", precision = 21, scale = 2)
+    private BigDecimal paidVnd;
+
+    @Column(name = "packing_date")
+    private LocalDate packingDate;
+
+    @Column(name = "estimated_deliver_date")
+    private LocalDate estimatedDeliverDate;
+
+    @Column(name = "delivered_date")
+    private LocalDate deliveredDate;
+
+    @Column(name = "finish_payment_time")
+    private ZonedDateTime finishPaymentTime;
+
     @Column(name = "remark")
     private String remark;
+
+    @Column(name = "address_1")
+    private String address1;
+
+    @Column(name = "address_2")
+    private String address2;
+
+    @Column(name = "phone_1")
+    private String phone1;
+
+    @Column(name = "phone_2")
+    private String phone2;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "zip_code")
+    private String zipCode;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "district")
+    private String district;
 
     @Column(name = "created_at")
     private ZonedDateTime createdAt;
@@ -63,6 +123,10 @@ public class Order implements Serializable {
 
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Payment payment;
 
     @OneToMany(mappedBy = "order")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -87,6 +151,19 @@ public class Order implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPaymentCode() {
+        return paymentCode;
+    }
+
+    public Order paymentCode(String paymentCode) {
+        this.paymentCode = paymentCode;
+        return this;
+    }
+
+    public void setPaymentCode(String paymentCode) {
+        this.paymentCode = paymentCode;
     }
 
     public ZonedDateTime getOrderDate() {
@@ -141,6 +218,136 @@ public class Order implements Serializable {
         this.exchangeRateId = exchangeRateId;
     }
 
+    public BigDecimal getExchangeRate() {
+        return exchangeRate;
+    }
+
+    public Order exchangeRate(BigDecimal exchangeRate) {
+        this.exchangeRate = exchangeRate;
+        return this;
+    }
+
+    public void setExchangeRate(BigDecimal exchangeRate) {
+        this.exchangeRate = exchangeRate;
+    }
+
+    public BigDecimal getTotalJpyPrice() {
+        return totalJpyPrice;
+    }
+
+    public Order totalJpyPrice(BigDecimal totalJpyPrice) {
+        this.totalJpyPrice = totalJpyPrice;
+        return this;
+    }
+
+    public void setTotalJpyPrice(BigDecimal totalJpyPrice) {
+        this.totalJpyPrice = totalJpyPrice;
+    }
+
+    public BigDecimal getDeliveryFeeVnd() {
+        return deliveryFeeVnd;
+    }
+
+    public Order deliveryFeeVnd(BigDecimal deliveryFeeVnd) {
+        this.deliveryFeeVnd = deliveryFeeVnd;
+        return this;
+    }
+
+    public void setDeliveryFeeVnd(BigDecimal deliveryFeeVnd) {
+        this.deliveryFeeVnd = deliveryFeeVnd;
+    }
+
+    public BigDecimal getTotalPayVnd() {
+        return totalPayVnd;
+    }
+
+    public Order totalPayVnd(BigDecimal totalPayVnd) {
+        this.totalPayVnd = totalPayVnd;
+        return this;
+    }
+
+    public void setTotalPayVnd(BigDecimal totalPayVnd) {
+        this.totalPayVnd = totalPayVnd;
+    }
+
+    public BigDecimal getDepositedVnd() {
+        return depositedVnd;
+    }
+
+    public Order depositedVnd(BigDecimal depositedVnd) {
+        this.depositedVnd = depositedVnd;
+        return this;
+    }
+
+    public void setDepositedVnd(BigDecimal depositedVnd) {
+        this.depositedVnd = depositedVnd;
+    }
+
+    public BigDecimal getPaidVnd() {
+        return paidVnd;
+    }
+
+    public Order paidVnd(BigDecimal paidVnd) {
+        this.paidVnd = paidVnd;
+        return this;
+    }
+
+    public void setPaidVnd(BigDecimal paidVnd) {
+        this.paidVnd = paidVnd;
+    }
+
+    public LocalDate getPackingDate() {
+        return packingDate;
+    }
+
+    public Order packingDate(LocalDate packingDate) {
+        this.packingDate = packingDate;
+        return this;
+    }
+
+    public void setPackingDate(LocalDate packingDate) {
+        this.packingDate = packingDate;
+    }
+
+    public LocalDate getEstimatedDeliverDate() {
+        return estimatedDeliverDate;
+    }
+
+    public Order estimatedDeliverDate(LocalDate estimatedDeliverDate) {
+        this.estimatedDeliverDate = estimatedDeliverDate;
+        return this;
+    }
+
+    public void setEstimatedDeliverDate(LocalDate estimatedDeliverDate) {
+        this.estimatedDeliverDate = estimatedDeliverDate;
+    }
+
+    public LocalDate getDeliveredDate() {
+        return deliveredDate;
+    }
+
+    public Order deliveredDate(LocalDate deliveredDate) {
+        this.deliveredDate = deliveredDate;
+        return this;
+    }
+
+    public void setDeliveredDate(LocalDate deliveredDate) {
+        this.deliveredDate = deliveredDate;
+    }
+
+    public ZonedDateTime getFinishPaymentTime() {
+        return finishPaymentTime;
+    }
+
+    public Order finishPaymentTime(ZonedDateTime finishPaymentTime) {
+        this.finishPaymentTime = finishPaymentTime;
+        return this;
+    }
+
+    public void setFinishPaymentTime(ZonedDateTime finishPaymentTime) {
+        this.finishPaymentTime = finishPaymentTime;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -152,6 +359,110 @@ public class Order implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public Order address1(String address1) {
+        this.address1 = address1;
+        return this;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public Order address2(String address2) {
+        this.address2 = address2;
+        return this;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getPhone1() {
+        return phone1;
+    }
+
+    public Order phone1(String phone1) {
+        this.phone1 = phone1;
+        return this;
+    }
+
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public Order phone2(String phone2) {
+        this.phone2 = phone2;
+        return this;
+    }
+
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Order email(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public Order zipCode(String zipCode) {
+        this.zipCode = zipCode;
+        return this;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public Order city(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public Order district(String district) {
+        this.district = district;
+        return this;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
     public ZonedDateTime getCreatedAt() {
@@ -204,6 +515,19 @@ public class Order implements Serializable {
 
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public Order payment(Payment payment) {
+        this.payment = payment;
+        return this;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public Set<OrderLineItem> getOrderLineItems() {
@@ -303,11 +627,30 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" +
             "id=" + getId() +
+            ", paymentCode='" + getPaymentCode() + "'" +
             ", orderDate='" + getOrderDate() + "'" +
             ", status='" + getStatus() + "'" +
             ", deliveryStatus='" + getDeliveryStatus() + "'" +
             ", exchangeRateId='" + getExchangeRateId() + "'" +
+            ", exchangeRate=" + getExchangeRate() +
+            ", totalJpyPrice=" + getTotalJpyPrice() +
+            ", deliveryFeeVnd=" + getDeliveryFeeVnd() +
+            ", totalPayVnd=" + getTotalPayVnd() +
+            ", depositedVnd=" + getDepositedVnd() +
+            ", paidVnd=" + getPaidVnd() +
+            ", packingDate='" + getPackingDate() + "'" +
+            ", estimatedDeliverDate='" + getEstimatedDeliverDate() + "'" +
+            ", deliveredDate='" + getDeliveredDate() + "'" +
+            ", finishPaymentTime='" + getFinishPaymentTime() + "'" +
             ", remark='" + getRemark() + "'" +
+            ", address1='" + getAddress1() + "'" +
+            ", address2='" + getAddress2() + "'" +
+            ", phone1='" + getPhone1() + "'" +
+            ", phone2='" + getPhone2() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", zipCode='" + getZipCode() + "'" +
+            ", city='" + getCity() + "'" +
+            ", district='" + getDistrict() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             ", lastUpdatedAt='" + getLastUpdatedAt() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +

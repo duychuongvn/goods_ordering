@@ -21,6 +21,10 @@
             "fieldType": "BigDecimal"
         },
         {
+            "fieldName": "totalPay",
+            "fieldType": "BigDecimal"
+        },
+        {
             "fieldName": "goodsName",
             "fieldType": "String"
         },
@@ -35,6 +39,10 @@
         {
             "fieldName": "size",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer"
         },
         {
             "fieldName": "remark",

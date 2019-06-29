@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-payment-heading" jhiTranslate="goodsorderApp.payment.home.createOrEditLabel">Create or edit a Payment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!payment.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.paymentCode" for="field_paymentCode">Payment Code</label>
+                    <input type="text" class="form-control" name="paymentCode" id="field_paymentCode"
+                           formControlName="paymentCode"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.paymentStatus" for="field_paymentStatus">Payment Status</label>
+                    <select class="form-control" name="paymentStatus" formControlName="paymentStatus" id="field_paymentStatus">
+                        <option value="PENDING">{{'goodsorderApp.PaymentStatus.PENDING' | translate}}</option>
+                        <option value="PART_RECEIVED">{{'goodsorderApp.PaymentStatus.PART_RECEIVED' | translate}}</option>
+                        <option value="FULL_RECEIVED">{{'goodsorderApp.PaymentStatus.FULL_RECEIVED' | translate}}</option>
+                        <option value="REFUNDED">{{'goodsorderApp.PaymentStatus.REFUNDED' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.receivedAmount" for="field_receivedAmount">Received Amount</label>
+                    <input type="number" class="form-control" name="receivedAmount" id="field_receivedAmount"
+                           formControlName="receivedAmount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.paidTime" for="field_paidTime">Paid Time</label>
+                    <div class="d-flex">
+                        <input id="field_paidTime" type="datetime-local" class="form-control" name="paidTime" formControlName="paidTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.bankAccount" for="field_bankAccount">Bank Account</label>
+                    <input type="text" class="form-control" name="bankAccount" id="field_bankAccount"
+                           formControlName="bankAccount"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.bankAccountHolder" for="field_bankAccountHolder">Bank Account Holder</label>
+                    <input type="text" class="form-control" name="bankAccountHolder" id="field_bankAccountHolder"
+                           formControlName="bankAccountHolder"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.bankInfo" for="field_bankInfo">Bank Info</label>
+                    <input type="text" class="form-control" name="bankInfo" id="field_bankInfo"
+                           formControlName="bankInfo"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.lastUpdatedAt" for="field_lastUpdatedAt">Last Updated At</label>
+                    <div class="d-flex">
+                        <input id="field_lastUpdatedAt" type="datetime-local" class="form-control" name="lastUpdatedAt" formControlName="lastUpdatedAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.createdBy" for="field_createdBy">Created By</label>
+                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                           formControlName="createdBy"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.payment.lastUpdatedBy" for="field_lastUpdatedBy">Last Updated By</label>
+                    <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                           formControlName="lastUpdatedBy"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

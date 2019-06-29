@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-bank-account-heading" jhiTranslate="goodsorderApp.bankAccount.home.createOrEditLabel">Create or edit a Bank Account</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!bankAccount.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.bankAccount.account" for="field_account">Account</label>
+                    <input type="text" class="form-control" name="account" id="field_account"
+                           formControlName="account"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.bankAccount.fullName" for="field_fullName">Full Name</label>
+                    <input type="text" class="form-control" name="fullName" id="field_fullName"
+                           formControlName="fullName"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.bankAccount.bankInfo" for="field_bankInfo">Bank Info</label>
+                    <input type="text" class="form-control" name="bankInfo" id="field_bankInfo"
+                           formControlName="bankInfo"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.bankAccount.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.bankAccount.lastUpdatedAt" for="field_lastUpdatedAt">Last Updated At</label>
+                    <div class="d-flex">
+                        <input id="field_lastUpdatedAt" type="datetime-local" class="form-control" name="lastUpdatedAt" formControlName="lastUpdatedAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.bankAccount.createdBy" for="field_createdBy">Created By</label>
+                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                           formControlName="createdBy"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.bankAccount.lastUpdatedBy" for="field_lastUpdatedBy">Last Updated By</label>
+                    <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                           formControlName="lastUpdatedBy"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

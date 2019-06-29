@@ -27,7 +27,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new OrderTracking(0, DeliveryStatus.INIT, currentDate, currentDate, currentDate, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new OrderTracking(0, DeliveryStatus.INIT, currentDate, 'AAAAAAA', currentDate, currentDate, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -82,6 +82,7 @@ describe('Service Tests', () => {
           {
             deliveryStatus: 'BBBBBB',
             dateTime: currentDate.format(DATE_TIME_FORMAT),
+            remark: 'BBBBBB',
             createdAt: currentDate.format(DATE_TIME_FORMAT),
             lastUpdatedAt: currentDate.format(DATE_TIME_FORMAT),
             createdBy: 'BBBBBB',
@@ -112,6 +113,7 @@ describe('Service Tests', () => {
           {
             deliveryStatus: 'BBBBBB',
             dateTime: currentDate.format(DATE_TIME_FORMAT),
+            remark: 'BBBBBB',
             createdAt: currentDate.format(DATE_TIME_FORMAT),
             lastUpdatedAt: currentDate.format(DATE_TIME_FORMAT),
             createdBy: 'BBBBBB',

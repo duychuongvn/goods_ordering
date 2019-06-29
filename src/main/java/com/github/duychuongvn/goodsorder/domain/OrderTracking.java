@@ -34,6 +34,9 @@ public class OrderTracking implements Serializable {
     @Column(name = "date_time")
     private ZonedDateTime dateTime;
 
+    @Column(name = "remark")
+    private String remark;
+
     @Column(name = "created_at")
     private ZonedDateTime createdAt;
 
@@ -83,6 +86,19 @@ public class OrderTracking implements Serializable {
 
     public void setDateTime(ZonedDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public OrderTracking remark(String remark) {
+        this.remark = remark;
+        return this;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public ZonedDateTime getCreatedAt() {
@@ -173,6 +189,7 @@ public class OrderTracking implements Serializable {
             "id=" + getId() +
             ", deliveryStatus='" + getDeliveryStatus() + "'" +
             ", dateTime='" + getDateTime() + "'" +
+            ", remark='" + getRemark() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             ", lastUpdatedAt='" + getLastUpdatedAt() + "'" +
             ", createdBy='" + getCreatedBy() + "'" +

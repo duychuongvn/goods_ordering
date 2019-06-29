@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { OrderService } from 'app/entities/order/order.service';
 import { IOrder, Order, OrderStatus, DeliveryStatus } from 'app/shared/model/order.model';
 
@@ -29,9 +29,28 @@ describe('Service Tests', () => {
 
       elemDefault = new Order(
         0,
+        'AAAAAAA',
         currentDate,
         OrderStatus.PENDING,
         DeliveryStatus.INIT,
+        'AAAAAAA',
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        currentDate,
+        currentDate,
+        currentDate,
+        currentDate,
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
+        'AAAAAAA',
         'AAAAAAA',
         'AAAAAAA',
         currentDate,
@@ -46,6 +65,10 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             orderDate: currentDate.format(DATE_TIME_FORMAT),
+            packingDate: currentDate.format(DATE_FORMAT),
+            estimatedDeliverDate: currentDate.format(DATE_FORMAT),
+            deliveredDate: currentDate.format(DATE_FORMAT),
+            finishPaymentTime: currentDate.format(DATE_TIME_FORMAT),
             createdAt: currentDate.format(DATE_TIME_FORMAT),
             lastUpdatedAt: currentDate.format(DATE_TIME_FORMAT)
           },
@@ -66,6 +89,10 @@ describe('Service Tests', () => {
           {
             id: 0,
             orderDate: currentDate.format(DATE_TIME_FORMAT),
+            packingDate: currentDate.format(DATE_FORMAT),
+            estimatedDeliverDate: currentDate.format(DATE_FORMAT),
+            deliveredDate: currentDate.format(DATE_FORMAT),
+            finishPaymentTime: currentDate.format(DATE_TIME_FORMAT),
             createdAt: currentDate.format(DATE_TIME_FORMAT),
             lastUpdatedAt: currentDate.format(DATE_TIME_FORMAT)
           },
@@ -74,6 +101,10 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             orderDate: currentDate,
+            packingDate: currentDate,
+            estimatedDeliverDate: currentDate,
+            deliveredDate: currentDate,
+            finishPaymentTime: currentDate,
             createdAt: currentDate,
             lastUpdatedAt: currentDate
           },
@@ -91,11 +122,30 @@ describe('Service Tests', () => {
       it('should update a Order', async () => {
         const returnedFromService = Object.assign(
           {
+            paymentCode: 'BBBBBB',
             orderDate: currentDate.format(DATE_TIME_FORMAT),
             status: 'BBBBBB',
             deliveryStatus: 'BBBBBB',
             exchangeRateId: 'BBBBBB',
+            exchangeRate: 1,
+            totalJpyPrice: 1,
+            deliveryFeeVnd: 1,
+            totalPayVnd: 1,
+            depositedVnd: 1,
+            paidVnd: 1,
+            packingDate: currentDate.format(DATE_FORMAT),
+            estimatedDeliverDate: currentDate.format(DATE_FORMAT),
+            deliveredDate: currentDate.format(DATE_FORMAT),
+            finishPaymentTime: currentDate.format(DATE_TIME_FORMAT),
             remark: 'BBBBBB',
+            address1: 'BBBBBB',
+            address2: 'BBBBBB',
+            phone1: 'BBBBBB',
+            phone2: 'BBBBBB',
+            email: 'BBBBBB',
+            zipCode: 'BBBBBB',
+            city: 'BBBBBB',
+            district: 'BBBBBB',
             createdAt: currentDate.format(DATE_TIME_FORMAT),
             lastUpdatedAt: currentDate.format(DATE_TIME_FORMAT),
             createdBy: 'BBBBBB',
@@ -107,6 +157,10 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             orderDate: currentDate,
+            packingDate: currentDate,
+            estimatedDeliverDate: currentDate,
+            deliveredDate: currentDate,
+            finishPaymentTime: currentDate,
             createdAt: currentDate,
             lastUpdatedAt: currentDate
           },
@@ -124,11 +178,30 @@ describe('Service Tests', () => {
       it('should return a list of Order', async () => {
         const returnedFromService = Object.assign(
           {
+            paymentCode: 'BBBBBB',
             orderDate: currentDate.format(DATE_TIME_FORMAT),
             status: 'BBBBBB',
             deliveryStatus: 'BBBBBB',
             exchangeRateId: 'BBBBBB',
+            exchangeRate: 1,
+            totalJpyPrice: 1,
+            deliveryFeeVnd: 1,
+            totalPayVnd: 1,
+            depositedVnd: 1,
+            paidVnd: 1,
+            packingDate: currentDate.format(DATE_FORMAT),
+            estimatedDeliverDate: currentDate.format(DATE_FORMAT),
+            deliveredDate: currentDate.format(DATE_FORMAT),
+            finishPaymentTime: currentDate.format(DATE_TIME_FORMAT),
             remark: 'BBBBBB',
+            address1: 'BBBBBB',
+            address2: 'BBBBBB',
+            phone1: 'BBBBBB',
+            phone2: 'BBBBBB',
+            email: 'BBBBBB',
+            zipCode: 'BBBBBB',
+            city: 'BBBBBB',
+            district: 'BBBBBB',
             createdAt: currentDate.format(DATE_TIME_FORMAT),
             lastUpdatedAt: currentDate.format(DATE_TIME_FORMAT),
             createdBy: 'BBBBBB',
@@ -139,6 +212,10 @@ describe('Service Tests', () => {
         const expected = Object.assign(
           {
             orderDate: currentDate,
+            packingDate: currentDate,
+            estimatedDeliverDate: currentDate,
+            deliveredDate: currentDate,
+            finishPaymentTime: currentDate,
             createdAt: currentDate,
             lastUpdatedAt: currentDate
           },

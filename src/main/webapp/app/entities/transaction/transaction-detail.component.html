@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="transaction">
+            <h2><span jhiTranslate="goodsorderApp.transaction.detail.title">Transaction</span> {{transaction.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.transaction.transactionType">Transaction Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'goodsorderApp.TransactionType.' + transaction.transactionType}}">{{transaction.transactionType}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.transaction.transactionDate">Transaction Date</span></dt>
+                <dd>
+                    <span>{{transaction.transactionDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.transaction.amount">Amount</span></dt>
+                <dd>
+                    <span>{{transaction.amount}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.transaction.paymentMethod">Payment Method</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'goodsorderApp.PaymentMethod.' + transaction.paymentMethod}}">{{transaction.paymentMethod}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.transaction.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{transaction.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.transaction.lastUpdatedAt">Last Updated At</span></dt>
+                <dd>
+                    <span>{{transaction.lastUpdatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.transaction.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{transaction.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.transaction.lastUpdatedBy">Last Updated By</span></dt>
+                <dd>
+                    <span>{{transaction.lastUpdatedBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.transaction.payment">Payment</span></dt>
+                <dd>
+                    <div *ngIf="transaction.payment">
+                        <a [routerLink]="['/payment', transaction.payment?.id, 'view']">{{transaction.payment?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/transaction', transaction.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

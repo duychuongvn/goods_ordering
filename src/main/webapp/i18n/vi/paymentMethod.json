@@ -1,0 +1,9 @@
+{
+  "goodsorderApp": {
+    "PaymentMethod": {
+      "null": "",
+      "BANK_TRANSFER": "BANK_TRANSFER",
+      "CASH": "CASH"
+    }
+  }
+}

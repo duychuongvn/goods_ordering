@@ -26,6 +26,7 @@ export class OrderTrackingUpdateComponent implements OnInit {
     id: [],
     deliveryStatus: [],
     dateTime: [],
+    remark: [],
     createdAt: [],
     lastUpdatedAt: [],
     createdBy: [],
@@ -61,6 +62,7 @@ export class OrderTrackingUpdateComponent implements OnInit {
       id: orderTracking.id,
       deliveryStatus: orderTracking.deliveryStatus,
       dateTime: orderTracking.dateTime != null ? orderTracking.dateTime.format(DATE_TIME_FORMAT) : null,
+      remark: orderTracking.remark,
       createdAt: orderTracking.createdAt != null ? orderTracking.createdAt.format(DATE_TIME_FORMAT) : null,
       lastUpdatedAt: orderTracking.lastUpdatedAt != null ? orderTracking.lastUpdatedAt.format(DATE_TIME_FORMAT) : null,
       createdBy: orderTracking.createdBy,
@@ -89,6 +91,7 @@ export class OrderTrackingUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       deliveryStatus: this.editForm.get(['deliveryStatus']).value,
       dateTime: this.editForm.get(['dateTime']).value != null ? moment(this.editForm.get(['dateTime']).value, DATE_TIME_FORMAT) : undefined,
+      remark: this.editForm.get(['remark']).value,
       createdAt:
         this.editForm.get(['createdAt']).value != null ? moment(this.editForm.get(['createdAt']).value, DATE_TIME_FORMAT) : undefined,
       lastUpdatedAt:

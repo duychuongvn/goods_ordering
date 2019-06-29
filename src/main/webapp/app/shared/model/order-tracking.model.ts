@@ -14,6 +14,7 @@ export interface IOrderTracking {
   id?: number;
   deliveryStatus?: DeliveryStatus;
   dateTime?: Moment;
+  remark?: string;
   createdAt?: Moment;
   lastUpdatedAt?: Moment;
   createdBy?: string;
@@ -26,6 +27,7 @@ export class OrderTracking implements IOrderTracking {
     public id?: number,
     public deliveryStatus?: DeliveryStatus,
     public dateTime?: Moment,
+    public remark?: string,
     public createdAt?: Moment,
     public lastUpdatedAt?: Moment,
     public createdBy?: string,

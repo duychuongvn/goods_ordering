@@ -47,6 +47,9 @@ public class OrderLineItem implements Serializable {
     @Column(name = "tax", precision = 21, scale = 2)
     private BigDecimal tax;
 
+    @Column(name = "total_pay", precision = 21, scale = 2)
+    private BigDecimal totalPay;
+
     @Column(name = "goods_name")
     private String goodsName;
 
@@ -58,6 +61,9 @@ public class OrderLineItem implements Serializable {
 
     @Column(name = "jhi_size")
     private String size;
+
+    @Column(name = "quantity")
+    private Integer quantity;
 
     @Column(name = "remark")
     private String remark;
@@ -139,6 +145,19 @@ public class OrderLineItem implements Serializable {
         this.tax = tax;
     }
 
+    public BigDecimal getTotalPay() {
+        return totalPay;
+    }
+
+    public OrderLineItem totalPay(BigDecimal totalPay) {
+        this.totalPay = totalPay;
+        return this;
+    }
+
+    public void setTotalPay(BigDecimal totalPay) {
+        this.totalPay = totalPay;
+    }
+
     public String getGoodsName() {
         return goodsName;
     }
@@ -189,6 +208,19 @@ public class OrderLineItem implements Serializable {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public OrderLineItem quantity(Integer quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public String getRemark() {
@@ -281,10 +313,12 @@ public class OrderLineItem implements Serializable {
             ", originPrice=" + getOriginPrice() +
             ", salePrice=" + getSalePrice() +
             ", tax=" + getTax() +
+            ", totalPay=" + getTotalPay() +
             ", goodsName='" + getGoodsName() + "'" +
             ", goodsId='" + getGoodsId() + "'" +
             ", goodsSKU='" + getGoodsSKU() + "'" +
             ", size='" + getSize() + "'" +
+            ", quantity=" + getQuantity() +
             ", remark='" + getRemark() + "'" +
             ", images='" + getImages() + "'" +
             ", imagesContentType='" + getImagesContentType() + "'" +

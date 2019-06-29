@@ -20,6 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.time.ZoneOffset;
@@ -41,6 +43,9 @@ import com.github.duychuongvn.goodsorder.domain.enumeration.DeliveryStatus;
 @SpringBootTest(classes = GoodsorderApp.class)
 public class OrderResourceIT {
 
+    private static final String DEFAULT_PAYMENT_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_PAYMENT_CODE = "BBBBBBBBBB";
+
     private static final ZonedDateTime DEFAULT_ORDER_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_ORDER_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -53,8 +58,62 @@ public class OrderResourceIT {
     private static final String DEFAULT_EXCHANGE_RATE_ID = "AAAAAAAAAA";
     private static final String UPDATED_EXCHANGE_RATE_ID = "BBBBBBBBBB";
 
+    private static final BigDecimal DEFAULT_EXCHANGE_RATE = new BigDecimal(1);
+    private static final BigDecimal UPDATED_EXCHANGE_RATE = new BigDecimal(2);
+
+    private static final BigDecimal DEFAULT_TOTAL_JPY_PRICE = new BigDecimal(1);
+    private static final BigDecimal UPDATED_TOTAL_JPY_PRICE = new BigDecimal(2);
+
+    private static final BigDecimal DEFAULT_DELIVERY_FEE_VND = new BigDecimal(1);
+    private static final BigDecimal UPDATED_DELIVERY_FEE_VND = new BigDecimal(2);
+
+    private static final BigDecimal DEFAULT_TOTAL_PAY_VND = new BigDecimal(1);
+    private static final BigDecimal UPDATED_TOTAL_PAY_VND = new BigDecimal(2);
+
+    private static final BigDecimal DEFAULT_DEPOSITED_VND = new BigDecimal(1);
+    private static final BigDecimal UPDATED_DEPOSITED_VND = new BigDecimal(2);
+
+    private static final BigDecimal DEFAULT_PAID_VND = new BigDecimal(1);
+    private static final BigDecimal UPDATED_PAID_VND = new BigDecimal(2);
+
+    private static final LocalDate DEFAULT_PACKING_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_PACKING_DATE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_ESTIMATED_DELIVER_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_ESTIMATED_DELIVER_DATE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_DELIVERED_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DELIVERED_DATE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final ZonedDateTime DEFAULT_FINISH_PAYMENT_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_FINISH_PAYMENT_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+
     private static final String DEFAULT_REMARK = "AAAAAAAAAA";
     private static final String UPDATED_REMARK = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ADDRESS_1 = "AAAAAAAAAA";
+    private static final String UPDATED_ADDRESS_1 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ADDRESS_2 = "AAAAAAAAAA";
+    private static final String UPDATED_ADDRESS_2 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PHONE_1 = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE_1 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PHONE_2 = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE_2 = "BBBBBBBBBB";
+
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_ZIP_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_ZIP_CODE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_CITY = "AAAAAAAAAA";
+    private static final String UPDATED_CITY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DISTRICT = "AAAAAAAAAA";
+    private static final String UPDATED_DISTRICT = "BBBBBBBBBB";
 
     private static final ZonedDateTime DEFAULT_CREATED_AT = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATED_AT = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
@@ -113,11 +172,30 @@ public class OrderResourceIT {
      */
     public static Order createEntity(EntityManager em) {
         Order order = new Order()
+            .paymentCode(DEFAULT_PAYMENT_CODE)
             .orderDate(DEFAULT_ORDER_DATE)
             .status(DEFAULT_STATUS)
             .deliveryStatus(DEFAULT_DELIVERY_STATUS)
             .exchangeRateId(DEFAULT_EXCHANGE_RATE_ID)
+            .exchangeRate(DEFAULT_EXCHANGE_RATE)
+            .totalJpyPrice(DEFAULT_TOTAL_JPY_PRICE)
+            .deliveryFeeVnd(DEFAULT_DELIVERY_FEE_VND)
+            .totalPayVnd(DEFAULT_TOTAL_PAY_VND)
+            .depositedVnd(DEFAULT_DEPOSITED_VND)
+            .paidVnd(DEFAULT_PAID_VND)
+            .packingDate(DEFAULT_PACKING_DATE)
+            .estimatedDeliverDate(DEFAULT_ESTIMATED_DELIVER_DATE)
+            .deliveredDate(DEFAULT_DELIVERED_DATE)
+            .finishPaymentTime(DEFAULT_FINISH_PAYMENT_TIME)
             .remark(DEFAULT_REMARK)
+            .address1(DEFAULT_ADDRESS_1)
+            .address2(DEFAULT_ADDRESS_2)
+            .phone1(DEFAULT_PHONE_1)
+            .phone2(DEFAULT_PHONE_2)
+            .email(DEFAULT_EMAIL)
+            .zipCode(DEFAULT_ZIP_CODE)
+            .city(DEFAULT_CITY)
+            .district(DEFAULT_DISTRICT)
             .createdAt(DEFAULT_CREATED_AT)
             .lastUpdatedAt(DEFAULT_LAST_UPDATED_AT)
             .createdBy(DEFAULT_CREATED_BY)
@@ -132,11 +210,30 @@ public class OrderResourceIT {
      */
     public static Order createUpdatedEntity(EntityManager em) {
         Order order = new Order()
+            .paymentCode(UPDATED_PAYMENT_CODE)
             .orderDate(UPDATED_ORDER_DATE)
             .status(UPDATED_STATUS)
             .deliveryStatus(UPDATED_DELIVERY_STATUS)
             .exchangeRateId(UPDATED_EXCHANGE_RATE_ID)
+            .exchangeRate(UPDATED_EXCHANGE_RATE)
+            .totalJpyPrice(UPDATED_TOTAL_JPY_PRICE)
+            .deliveryFeeVnd(UPDATED_DELIVERY_FEE_VND)
+            .totalPayVnd(UPDATED_TOTAL_PAY_VND)
+            .depositedVnd(UPDATED_DEPOSITED_VND)
+            .paidVnd(UPDATED_PAID_VND)
+            .packingDate(UPDATED_PACKING_DATE)
+            .estimatedDeliverDate(UPDATED_ESTIMATED_DELIVER_DATE)
+            .deliveredDate(UPDATED_DELIVERED_DATE)
+            .finishPaymentTime(UPDATED_FINISH_PAYMENT_TIME)
             .remark(UPDATED_REMARK)
+            .address1(UPDATED_ADDRESS_1)
+            .address2(UPDATED_ADDRESS_2)
+            .phone1(UPDATED_PHONE_1)
+            .phone2(UPDATED_PHONE_2)
+            .email(UPDATED_EMAIL)
+            .zipCode(UPDATED_ZIP_CODE)
+            .city(UPDATED_CITY)
+            .district(UPDATED_DISTRICT)
             .createdAt(UPDATED_CREATED_AT)
             .lastUpdatedAt(UPDATED_LAST_UPDATED_AT)
             .createdBy(UPDATED_CREATED_BY)
@@ -164,11 +261,30 @@ public class OrderResourceIT {
         List<Order> orderList = orderRepository.findAll();
         assertThat(orderList).hasSize(databaseSizeBeforeCreate + 1);
         Order testOrder = orderList.get(orderList.size() - 1);
+        assertThat(testOrder.getPaymentCode()).isEqualTo(DEFAULT_PAYMENT_CODE);
         assertThat(testOrder.getOrderDate()).isEqualTo(DEFAULT_ORDER_DATE);
         assertThat(testOrder.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testOrder.getDeliveryStatus()).isEqualTo(DEFAULT_DELIVERY_STATUS);
         assertThat(testOrder.getExchangeRateId()).isEqualTo(DEFAULT_EXCHANGE_RATE_ID);
+        assertThat(testOrder.getExchangeRate()).isEqualTo(DEFAULT_EXCHANGE_RATE);
+        assertThat(testOrder.getTotalJpyPrice()).isEqualTo(DEFAULT_TOTAL_JPY_PRICE);
+        assertThat(testOrder.getDeliveryFeeVnd()).isEqualTo(DEFAULT_DELIVERY_FEE_VND);
+        assertThat(testOrder.getTotalPayVnd()).isEqualTo(DEFAULT_TOTAL_PAY_VND);
+        assertThat(testOrder.getDepositedVnd()).isEqualTo(DEFAULT_DEPOSITED_VND);
+        assertThat(testOrder.getPaidVnd()).isEqualTo(DEFAULT_PAID_VND);
+        assertThat(testOrder.getPackingDate()).isEqualTo(DEFAULT_PACKING_DATE);
+        assertThat(testOrder.getEstimatedDeliverDate()).isEqualTo(DEFAULT_ESTIMATED_DELIVER_DATE);
+        assertThat(testOrder.getDeliveredDate()).isEqualTo(DEFAULT_DELIVERED_DATE);
+        assertThat(testOrder.getFinishPaymentTime()).isEqualTo(DEFAULT_FINISH_PAYMENT_TIME);
         assertThat(testOrder.getRemark()).isEqualTo(DEFAULT_REMARK);
+        assertThat(testOrder.getAddress1()).isEqualTo(DEFAULT_ADDRESS_1);
+        assertThat(testOrder.getAddress2()).isEqualTo(DEFAULT_ADDRESS_2);
+        assertThat(testOrder.getPhone1()).isEqualTo(DEFAULT_PHONE_1);
+        assertThat(testOrder.getPhone2()).isEqualTo(DEFAULT_PHONE_2);
+        assertThat(testOrder.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testOrder.getZipCode()).isEqualTo(DEFAULT_ZIP_CODE);
+        assertThat(testOrder.getCity()).isEqualTo(DEFAULT_CITY);
+        assertThat(testOrder.getDistrict()).isEqualTo(DEFAULT_DISTRICT);
         assertThat(testOrder.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
         assertThat(testOrder.getLastUpdatedAt()).isEqualTo(DEFAULT_LAST_UPDATED_AT);
         assertThat(testOrder.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
@@ -194,6 +310,24 @@ public class OrderResourceIT {
         assertThat(orderList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    @Transactional
+    public void checkPaymentCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = orderRepository.findAll().size();
+        // set the field null
+        order.setPaymentCode(null);
+
+        // Create the Order, which fails.
+
+        restOrderMockMvc.perform(post("/api/orders")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(order)))
+            .andExpect(status().isBadRequest());
+
+        List<Order> orderList = orderRepository.findAll();
+        assertThat(orderList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional
@@ -242,11 +376,30 @@ public class OrderResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(order.getId().intValue())))
+            .andExpect(jsonPath("$.[*].paymentCode").value(hasItem(DEFAULT_PAYMENT_CODE.toString())))
             .andExpect(jsonPath("$.[*].orderDate").value(hasItem(sameInstant(DEFAULT_ORDER_DATE))))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].deliveryStatus").value(hasItem(DEFAULT_DELIVERY_STATUS.toString())))
             .andExpect(jsonPath("$.[*].exchangeRateId").value(hasItem(DEFAULT_EXCHANGE_RATE_ID.toString())))
+            .andExpect(jsonPath("$.[*].exchangeRate").value(hasItem(DEFAULT_EXCHANGE_RATE.intValue())))
+            .andExpect(jsonPath("$.[*].totalJpyPrice").value(hasItem(DEFAULT_TOTAL_JPY_PRICE.intValue())))
+            .andExpect(jsonPath("$.[*].deliveryFeeVnd").value(hasItem(DEFAULT_DELIVERY_FEE_VND.intValue())))
+            .andExpect(jsonPath("$.[*].totalPayVnd").value(hasItem(DEFAULT_TOTAL_PAY_VND.intValue())))
+            .andExpect(jsonPath("$.[*].depositedVnd").value(hasItem(DEFAULT_DEPOSITED_VND.intValue())))
+            .andExpect(jsonPath("$.[*].paidVnd").value(hasItem(DEFAULT_PAID_VND.intValue())))
+            .andExpect(jsonPath("$.[*].packingDate").value(hasItem(DEFAULT_PACKING_DATE.toString())))
+            .andExpect(jsonPath("$.[*].estimatedDeliverDate").value(hasItem(DEFAULT_ESTIMATED_DELIVER_DATE.toString())))
+            .andExpect(jsonPath("$.[*].deliveredDate").value(hasItem(DEFAULT_DELIVERED_DATE.toString())))
+            .andExpect(jsonPath("$.[*].finishPaymentTime").value(hasItem(sameInstant(DEFAULT_FINISH_PAYMENT_TIME))))
             .andExpect(jsonPath("$.[*].remark").value(hasItem(DEFAULT_REMARK.toString())))
+            .andExpect(jsonPath("$.[*].address1").value(hasItem(DEFAULT_ADDRESS_1.toString())))
+            .andExpect(jsonPath("$.[*].address2").value(hasItem(DEFAULT_ADDRESS_2.toString())))
+            .andExpect(jsonPath("$.[*].phone1").value(hasItem(DEFAULT_PHONE_1.toString())))
+            .andExpect(jsonPath("$.[*].phone2").value(hasItem(DEFAULT_PHONE_2.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].zipCode").value(hasItem(DEFAULT_ZIP_CODE.toString())))
+            .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
+            .andExpect(jsonPath("$.[*].district").value(hasItem(DEFAULT_DISTRICT.toString())))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))))
             .andExpect(jsonPath("$.[*].lastUpdatedAt").value(hasItem(sameInstant(DEFAULT_LAST_UPDATED_AT))))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
@@ -264,11 +417,30 @@ public class OrderResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(order.getId().intValue()))
+            .andExpect(jsonPath("$.paymentCode").value(DEFAULT_PAYMENT_CODE.toString()))
             .andExpect(jsonPath("$.orderDate").value(sameInstant(DEFAULT_ORDER_DATE)))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.deliveryStatus").value(DEFAULT_DELIVERY_STATUS.toString()))
             .andExpect(jsonPath("$.exchangeRateId").value(DEFAULT_EXCHANGE_RATE_ID.toString()))
+            .andExpect(jsonPath("$.exchangeRate").value(DEFAULT_EXCHANGE_RATE.intValue()))
+            .andExpect(jsonPath("$.totalJpyPrice").value(DEFAULT_TOTAL_JPY_PRICE.intValue()))
+            .andExpect(jsonPath("$.deliveryFeeVnd").value(DEFAULT_DELIVERY_FEE_VND.intValue()))
+            .andExpect(jsonPath("$.totalPayVnd").value(DEFAULT_TOTAL_PAY_VND.intValue()))
+            .andExpect(jsonPath("$.depositedVnd").value(DEFAULT_DEPOSITED_VND.intValue()))
+            .andExpect(jsonPath("$.paidVnd").value(DEFAULT_PAID_VND.intValue()))
+            .andExpect(jsonPath("$.packingDate").value(DEFAULT_PACKING_DATE.toString()))
+            .andExpect(jsonPath("$.estimatedDeliverDate").value(DEFAULT_ESTIMATED_DELIVER_DATE.toString()))
+            .andExpect(jsonPath("$.deliveredDate").value(DEFAULT_DELIVERED_DATE.toString()))
+            .andExpect(jsonPath("$.finishPaymentTime").value(sameInstant(DEFAULT_FINISH_PAYMENT_TIME)))
             .andExpect(jsonPath("$.remark").value(DEFAULT_REMARK.toString()))
+            .andExpect(jsonPath("$.address1").value(DEFAULT_ADDRESS_1.toString()))
+            .andExpect(jsonPath("$.address2").value(DEFAULT_ADDRESS_2.toString()))
+            .andExpect(jsonPath("$.phone1").value(DEFAULT_PHONE_1.toString()))
+            .andExpect(jsonPath("$.phone2").value(DEFAULT_PHONE_2.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.zipCode").value(DEFAULT_ZIP_CODE.toString()))
+            .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
+            .andExpect(jsonPath("$.district").value(DEFAULT_DISTRICT.toString()))
             .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)))
             .andExpect(jsonPath("$.lastUpdatedAt").value(sameInstant(DEFAULT_LAST_UPDATED_AT)))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
@@ -296,11 +468,30 @@ public class OrderResourceIT {
         // Disconnect from session so that the updates on updatedOrder are not directly saved in db
         em.detach(updatedOrder);
         updatedOrder
+            .paymentCode(UPDATED_PAYMENT_CODE)
             .orderDate(UPDATED_ORDER_DATE)
             .status(UPDATED_STATUS)
             .deliveryStatus(UPDATED_DELIVERY_STATUS)
             .exchangeRateId(UPDATED_EXCHANGE_RATE_ID)
+            .exchangeRate(UPDATED_EXCHANGE_RATE)
+            .totalJpyPrice(UPDATED_TOTAL_JPY_PRICE)
+            .deliveryFeeVnd(UPDATED_DELIVERY_FEE_VND)
+            .totalPayVnd(UPDATED_TOTAL_PAY_VND)
+            .depositedVnd(UPDATED_DEPOSITED_VND)
+            .paidVnd(UPDATED_PAID_VND)
+            .packingDate(UPDATED_PACKING_DATE)
+            .estimatedDeliverDate(UPDATED_ESTIMATED_DELIVER_DATE)
+            .deliveredDate(UPDATED_DELIVERED_DATE)
+            .finishPaymentTime(UPDATED_FINISH_PAYMENT_TIME)
             .remark(UPDATED_REMARK)
+            .address1(UPDATED_ADDRESS_1)
+            .address2(UPDATED_ADDRESS_2)
+            .phone1(UPDATED_PHONE_1)
+            .phone2(UPDATED_PHONE_2)
+            .email(UPDATED_EMAIL)
+            .zipCode(UPDATED_ZIP_CODE)
+            .city(UPDATED_CITY)
+            .district(UPDATED_DISTRICT)
             .createdAt(UPDATED_CREATED_AT)
             .lastUpdatedAt(UPDATED_LAST_UPDATED_AT)
             .createdBy(UPDATED_CREATED_BY)
@@ -315,11 +506,30 @@ public class OrderResourceIT {
         List<Order> orderList = orderRepository.findAll();
         assertThat(orderList).hasSize(databaseSizeBeforeUpdate);
         Order testOrder = orderList.get(orderList.size() - 1);
+        assertThat(testOrder.getPaymentCode()).isEqualTo(UPDATED_PAYMENT_CODE);
         assertThat(testOrder.getOrderDate()).isEqualTo(UPDATED_ORDER_DATE);
         assertThat(testOrder.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testOrder.getDeliveryStatus()).isEqualTo(UPDATED_DELIVERY_STATUS);
         assertThat(testOrder.getExchangeRateId()).isEqualTo(UPDATED_EXCHANGE_RATE_ID);
+        assertThat(testOrder.getExchangeRate()).isEqualTo(UPDATED_EXCHANGE_RATE);
+        assertThat(testOrder.getTotalJpyPrice()).isEqualTo(UPDATED_TOTAL_JPY_PRICE);
+        assertThat(testOrder.getDeliveryFeeVnd()).isEqualTo(UPDATED_DELIVERY_FEE_VND);
+        assertThat(testOrder.getTotalPayVnd()).isEqualTo(UPDATED_TOTAL_PAY_VND);
+        assertThat(testOrder.getDepositedVnd()).isEqualTo(UPDATED_DEPOSITED_VND);
+        assertThat(testOrder.getPaidVnd()).isEqualTo(UPDATED_PAID_VND);
+        assertThat(testOrder.getPackingDate()).isEqualTo(UPDATED_PACKING_DATE);
+        assertThat(testOrder.getEstimatedDeliverDate()).isEqualTo(UPDATED_ESTIMATED_DELIVER_DATE);
+        assertThat(testOrder.getDeliveredDate()).isEqualTo(UPDATED_DELIVERED_DATE);
+        assertThat(testOrder.getFinishPaymentTime()).isEqualTo(UPDATED_FINISH_PAYMENT_TIME);
         assertThat(testOrder.getRemark()).isEqualTo(UPDATED_REMARK);
+        assertThat(testOrder.getAddress1()).isEqualTo(UPDATED_ADDRESS_1);
+        assertThat(testOrder.getAddress2()).isEqualTo(UPDATED_ADDRESS_2);
+        assertThat(testOrder.getPhone1()).isEqualTo(UPDATED_PHONE_1);
+        assertThat(testOrder.getPhone2()).isEqualTo(UPDATED_PHONE_2);
+        assertThat(testOrder.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testOrder.getZipCode()).isEqualTo(UPDATED_ZIP_CODE);
+        assertThat(testOrder.getCity()).isEqualTo(UPDATED_CITY);
+        assertThat(testOrder.getDistrict()).isEqualTo(UPDATED_DISTRICT);
         assertThat(testOrder.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
         assertThat(testOrder.getLastUpdatedAt()).isEqualTo(UPDATED_LAST_UPDATED_AT);
         assertThat(testOrder.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);

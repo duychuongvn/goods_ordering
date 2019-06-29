@@ -5,6 +5,10 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.order.paymentCode">Payment Code</span></dt>
+                <dd>
+                    <span>{{order.paymentCode}}</span>
+                </dd>
                 <dt><span jhiTranslate="goodsorderApp.order.orderDate">Order Date</span></dt>
                 <dd>
                     <span>{{order.orderDate}}</span>
@@ -21,9 +25,81 @@
                 <dd>
                     <span>{{order.exchangeRateId}}</span>
                 </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.exchangeRate">Exchange Rate</span></dt>
+                <dd>
+                    <span>{{order.exchangeRate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.totalJpyPrice">Total Jpy Price</span></dt>
+                <dd>
+                    <span>{{order.totalJpyPrice}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.deliveryFeeVnd">Delivery Fee Vnd</span></dt>
+                <dd>
+                    <span>{{order.deliveryFeeVnd}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.totalPayVnd">Total Pay Vnd</span></dt>
+                <dd>
+                    <span>{{order.totalPayVnd}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.depositedVnd">Deposited Vnd</span></dt>
+                <dd>
+                    <span>{{order.depositedVnd}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.paidVnd">Paid Vnd</span></dt>
+                <dd>
+                    <span>{{order.paidVnd}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.packingDate">Packing Date</span></dt>
+                <dd>
+                    <span>{{order.packingDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.estimatedDeliverDate">Estimated Deliver Date</span></dt>
+                <dd>
+                    <span>{{order.estimatedDeliverDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.deliveredDate">Delivered Date</span></dt>
+                <dd>
+                    <span>{{order.deliveredDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.finishPaymentTime">Finish Payment Time</span></dt>
+                <dd>
+                    <span>{{order.finishPaymentTime}}</span>
+                </dd>
                 <dt><span jhiTranslate="goodsorderApp.order.remark">Remark</span></dt>
                 <dd>
                     <span>{{order.remark}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.address1">Address 1</span></dt>
+                <dd>
+                    <span>{{order.address1}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.address2">Address 2</span></dt>
+                <dd>
+                    <span>{{order.address2}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.phone1">Phone 1</span></dt>
+                <dd>
+                    <span>{{order.phone1}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.phone2">Phone 2</span></dt>
+                <dd>
+                    <span>{{order.phone2}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.email">Email</span></dt>
+                <dd>
+                    <span>{{order.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.zipCode">Zip Code</span></dt>
+                <dd>
+                    <span>{{order.zipCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.city">City</span></dt>
+                <dd>
+                    <span>{{order.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.district">District</span></dt>
+                <dd>
+                    <span>{{order.district}}</span>
                 </dd>
                 <dt><span jhiTranslate="goodsorderApp.order.createdAt">Created At</span></dt>
                 <dd>
@@ -40,6 +116,12 @@
                 <dt><span jhiTranslate="goodsorderApp.order.lastUpdatedBy">Last Updated By</span></dt>
                 <dd>
                     <span>{{order.lastUpdatedBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.order.payment">Payment</span></dt>
+                <dd>
+                    <div *ngIf="order.payment">
+                        <a [routerLink]="['/payment', order.payment?.id, 'view']">{{order.payment?.id}}</a>
+                    </div>
                 </dd>
                 <dt><span jhiTranslate="goodsorderApp.order.user">User</span></dt>
                 <dd>

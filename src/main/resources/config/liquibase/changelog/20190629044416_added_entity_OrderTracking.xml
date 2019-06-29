@@ -24,6 +24,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="remark" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="created_at" type="datetime">
                 <constraints nullable="true" />
             </column>

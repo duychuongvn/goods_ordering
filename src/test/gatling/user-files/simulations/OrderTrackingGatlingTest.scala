@@ -74,6 +74,7 @@ class OrderTrackingGatlingTest extends Simulation {
                 "id":null
                 , "deliveryStatus":"INIT"
                 , "dateTime":"2020-01-01T00:00:00.000Z"
+                , "remark":"SAMPLE_TEXT"
                 , "createdAt":"2020-01-01T00:00:00.000Z"
                 , "lastUpdatedAt":"2020-01-01T00:00:00.000Z"
                 , "createdBy":"SAMPLE_TEXT"

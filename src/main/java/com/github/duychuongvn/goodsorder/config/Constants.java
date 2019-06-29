@@ -13,6 +13,7 @@ public final class Constants {
     public static final String ANONYMOUS_USER = "anonymoususer";
 
     public static final String SESSION_KEY_ORDER = "order";
+    public static final String TAX_INCLUDED = "税込";
     private Constants() {
     }
 }

@@ -1,0 +1,67 @@
+{
+    "name": "Payment",
+    "fields": [
+        {
+            "fieldName": "paymentCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "paymentStatus",
+            "fieldType": "PaymentStatus",
+            "fieldValues": "PENDING,PART_RECEIVED,FULL_RECEIVED,REFUNDED"
+        },
+        {
+            "fieldName": "receivedAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "paidTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "bankAccount",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankAccountHolder",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bankInfo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "lastUpdatedAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "transaction",
+            "otherEntityRelationshipName": "payment",
+            "relationshipName": "transactions"
+        }
+    ],
+    "changelogDate": "20190629161856",
+    "entityTableName": "payment",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

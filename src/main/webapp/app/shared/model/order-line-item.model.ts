@@ -11,10 +11,12 @@ export interface IOrderLineItem {
   originPrice?: number;
   salePrice?: number;
   tax?: number;
+  totalPay?: number;
   goodsName?: string;
   goodsId?: string;
   goodsSKU?: string;
   size?: string;
+  quantity?: number;
   remark?: string;
   imagesContentType?: string;
   images?: any;
@@ -29,10 +31,12 @@ export class OrderLineItem implements IOrderLineItem {
     public originPrice?: number,
     public salePrice?: number,
     public tax?: number,
+    public totalPay?: number,
     public goodsName?: string,
     public goodsId?: string,
     public goodsSKU?: string,
     public size?: string,
+    public quantity?: number,
     public remark?: string,
     public imagesContentType?: string,
     public images?: any,

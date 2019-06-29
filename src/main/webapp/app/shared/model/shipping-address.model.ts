@@ -7,8 +7,7 @@ export interface IShippingAddress {
   address2?: string;
   phone1?: string;
   phone2?: string;
-  email1?: string;
-  email2?: string;
+  email?: string;
   zipCode?: string;
   city?: string;
   district?: string;
@@ -27,8 +26,7 @@ export class ShippingAddress implements IShippingAddress {
     public address2?: string,
     public phone1?: string,
     public phone2?: string,
-    public email1?: string,
-    public email2?: string,
+    public email?: string,
     public zipCode?: string,
     public city?: string,
     public district?: string,

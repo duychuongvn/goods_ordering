@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bankAccount">
+            <h2><span jhiTranslate="goodsorderApp.bankAccount.detail.title">Bank Account</span> {{bankAccount.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.bankAccount.account">Account</span></dt>
+                <dd>
+                    <span>{{bankAccount.account}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.bankAccount.fullName">Full Name</span></dt>
+                <dd>
+                    <span>{{bankAccount.fullName}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.bankAccount.bankInfo">Bank Info</span></dt>
+                <dd>
+                    <span>{{bankAccount.bankInfo}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.bankAccount.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{bankAccount.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.bankAccount.lastUpdatedAt">Last Updated At</span></dt>
+                <dd>
+                    <span>{{bankAccount.lastUpdatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.bankAccount.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{bankAccount.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.bankAccount.lastUpdatedBy">Last Updated By</span></dt>
+                <dd>
+                    <span>{{bankAccount.lastUpdatedBy}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bank-account', bankAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

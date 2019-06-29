@@ -46,6 +46,9 @@ public class OrderTrackingResourceIT {
     private static final ZonedDateTime DEFAULT_DATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_DATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
+    private static final String DEFAULT_REMARK = "AAAAAAAAAA";
+    private static final String UPDATED_REMARK = "BBBBBBBBBB";
+
     private static final ZonedDateTime DEFAULT_CREATED_AT = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATED_AT = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
@@ -105,6 +108,7 @@ public class OrderTrackingResourceIT {
         OrderTracking orderTracking = new OrderTracking()
             .deliveryStatus(DEFAULT_DELIVERY_STATUS)
             .dateTime(DEFAULT_DATE_TIME)
+            .remark(DEFAULT_REMARK)
             .createdAt(DEFAULT_CREATED_AT)
             .lastUpdatedAt(DEFAULT_LAST_UPDATED_AT)
             .createdBy(DEFAULT_CREATED_BY)
@@ -121,6 +125,7 @@ public class OrderTrackingResourceIT {
         OrderTracking orderTracking = new OrderTracking()
             .deliveryStatus(UPDATED_DELIVERY_STATUS)
             .dateTime(UPDATED_DATE_TIME)
+            .remark(UPDATED_REMARK)
             .createdAt(UPDATED_CREATED_AT)
             .lastUpdatedAt(UPDATED_LAST_UPDATED_AT)
             .createdBy(UPDATED_CREATED_BY)
@@ -150,6 +155,7 @@ public class OrderTrackingResourceIT {
         OrderTracking testOrderTracking = orderTrackingList.get(orderTrackingList.size() - 1);
         assertThat(testOrderTracking.getDeliveryStatus()).isEqualTo(DEFAULT_DELIVERY_STATUS);
         assertThat(testOrderTracking.getDateTime()).isEqualTo(DEFAULT_DATE_TIME);
+        assertThat(testOrderTracking.getRemark()).isEqualTo(DEFAULT_REMARK);
         assertThat(testOrderTracking.getCreatedAt()).isEqualTo(DEFAULT_CREATED_AT);
         assertThat(testOrderTracking.getLastUpdatedAt()).isEqualTo(DEFAULT_LAST_UPDATED_AT);
         assertThat(testOrderTracking.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
@@ -189,6 +195,7 @@ public class OrderTrackingResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(orderTracking.getId().intValue())))
             .andExpect(jsonPath("$.[*].deliveryStatus").value(hasItem(DEFAULT_DELIVERY_STATUS.toString())))
             .andExpect(jsonPath("$.[*].dateTime").value(hasItem(sameInstant(DEFAULT_DATE_TIME))))
+            .andExpect(jsonPath("$.[*].remark").value(hasItem(DEFAULT_REMARK.toString())))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))))
             .andExpect(jsonPath("$.[*].lastUpdatedAt").value(hasItem(sameInstant(DEFAULT_LAST_UPDATED_AT))))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
@@ -208,6 +215,7 @@ public class OrderTrackingResourceIT {
             .andExpect(jsonPath("$.id").value(orderTracking.getId().intValue()))
             .andExpect(jsonPath("$.deliveryStatus").value(DEFAULT_DELIVERY_STATUS.toString()))
             .andExpect(jsonPath("$.dateTime").value(sameInstant(DEFAULT_DATE_TIME)))
+            .andExpect(jsonPath("$.remark").value(DEFAULT_REMARK.toString()))
             .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)))
             .andExpect(jsonPath("$.lastUpdatedAt").value(sameInstant(DEFAULT_LAST_UPDATED_AT)))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
@@ -237,6 +245,7 @@ public class OrderTrackingResourceIT {
         updatedOrderTracking
             .deliveryStatus(UPDATED_DELIVERY_STATUS)
             .dateTime(UPDATED_DATE_TIME)
+            .remark(UPDATED_REMARK)
             .createdAt(UPDATED_CREATED_AT)
             .lastUpdatedAt(UPDATED_LAST_UPDATED_AT)
             .createdBy(UPDATED_CREATED_BY)
@@ -253,6 +262,7 @@ public class OrderTrackingResourceIT {
         OrderTracking testOrderTracking = orderTrackingList.get(orderTrackingList.size() - 1);
         assertThat(testOrderTracking.getDeliveryStatus()).isEqualTo(UPDATED_DELIVERY_STATUS);
         assertThat(testOrderTracking.getDateTime()).isEqualTo(UPDATED_DATE_TIME);
+        assertThat(testOrderTracking.getRemark()).isEqualTo(UPDATED_REMARK);
         assertThat(testOrderTracking.getCreatedAt()).isEqualTo(UPDATED_CREATED_AT);
         assertThat(testOrderTracking.getLastUpdatedAt()).isEqualTo(UPDATED_LAST_UPDATED_AT);
         assertThat(testOrderTracking.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);

@@ -1,0 +1,10 @@
+{
+  "goodsorderApp": {
+    "TransactionType": {
+      "null": "",
+      "DEPOSIT": "DEPOSIT",
+      "PARTIAL": "PARTIAL",
+      "FULL": "FULL"
+    }
+  }
+}

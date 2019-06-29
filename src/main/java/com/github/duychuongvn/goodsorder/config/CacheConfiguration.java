@@ -53,6 +53,11 @@ public class CacheConfiguration {
             createCache(cm, com.github.duychuongvn.goodsorder.domain.Order.class.getName() + ".orderLineItems");
             createCache(cm, com.github.duychuongvn.goodsorder.domain.Order.class.getName() + ".orderTrackings");
             createCache(cm, com.github.duychuongvn.goodsorder.domain.ExchangeRate.class.getName());
+            createCache(cm, com.github.duychuongvn.goodsorder.domain.Order.class.getName() + ".payments");
+            createCache(cm, com.github.duychuongvn.goodsorder.domain.Payment.class.getName());
+            createCache(cm, com.github.duychuongvn.goodsorder.domain.Transaction.class.getName());
+            createCache(cm, com.github.duychuongvn.goodsorder.domain.BankAccount.class.getName());
+            createCache(cm, com.github.duychuongvn.goodsorder.domain.Payment.class.getName() + ".transactions");
             // jhipster-needle-ehcache-add-entry
         };
     }

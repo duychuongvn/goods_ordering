@@ -22,7 +22,6 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,6 +50,9 @@ public class OrderLineItemResourceIT {
     private static final BigDecimal DEFAULT_TAX = new BigDecimal(1);
     private static final BigDecimal UPDATED_TAX = new BigDecimal(2);
 
+    private static final BigDecimal DEFAULT_TOTAL_PAY = new BigDecimal(1);
+    private static final BigDecimal UPDATED_TOTAL_PAY = new BigDecimal(2);
+
     private static final String DEFAULT_GOODS_NAME = "AAAAAAAAAA";
     private static final String UPDATED_GOODS_NAME = "BBBBBBBBBB";
 
@@ -62,6 +64,9 @@ public class OrderLineItemResourceIT {
 
     private static final String DEFAULT_SIZE = "AAAAAAAAAA";
     private static final String UPDATED_SIZE = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_QUANTITY = 1;
+    private static final Integer UPDATED_QUANTITY = 2;
 
     private static final String DEFAULT_REMARK = "AAAAAAAAAA";
     private static final String UPDATED_REMARK = "BBBBBBBBBB";
@@ -123,10 +128,12 @@ public class OrderLineItemResourceIT {
             .originPrice(DEFAULT_ORIGIN_PRICE)
             .salePrice(DEFAULT_SALE_PRICE)
             .tax(DEFAULT_TAX)
+            .totalPay(DEFAULT_TOTAL_PAY)
             .goodsName(DEFAULT_GOODS_NAME)
             .goodsId(DEFAULT_GOODS_ID)
             .goodsSKU(DEFAULT_GOODS_SKU)
             .size(DEFAULT_SIZE)
+            .quantity(DEFAULT_QUANTITY)
             .remark(DEFAULT_REMARK)
             .images(DEFAULT_IMAGES)
             .imagesContentType(DEFAULT_IMAGES_CONTENT_TYPE)
@@ -145,10 +152,12 @@ public class OrderLineItemResourceIT {
             .originPrice(UPDATED_ORIGIN_PRICE)
             .salePrice(UPDATED_SALE_PRICE)
             .tax(UPDATED_TAX)
+            .totalPay(UPDATED_TOTAL_PAY)
             .goodsName(UPDATED_GOODS_NAME)
             .goodsId(UPDATED_GOODS_ID)
             .goodsSKU(UPDATED_GOODS_SKU)
             .size(UPDATED_SIZE)
+            .quantity(UPDATED_QUANTITY)
             .remark(UPDATED_REMARK)
             .images(UPDATED_IMAGES)
             .imagesContentType(UPDATED_IMAGES_CONTENT_TYPE)
@@ -180,10 +189,12 @@ public class OrderLineItemResourceIT {
         assertThat(testOrderLineItem.getOriginPrice()).isEqualTo(DEFAULT_ORIGIN_PRICE);
         assertThat(testOrderLineItem.getSalePrice()).isEqualTo(DEFAULT_SALE_PRICE);
         assertThat(testOrderLineItem.getTax()).isEqualTo(DEFAULT_TAX);
+        assertThat(testOrderLineItem.getTotalPay()).isEqualTo(DEFAULT_TOTAL_PAY);
         assertThat(testOrderLineItem.getGoodsName()).isEqualTo(DEFAULT_GOODS_NAME);
         assertThat(testOrderLineItem.getGoodsId()).isEqualTo(DEFAULT_GOODS_ID);
         assertThat(testOrderLineItem.getGoodsSKU()).isEqualTo(DEFAULT_GOODS_SKU);
         assertThat(testOrderLineItem.getSize()).isEqualTo(DEFAULT_SIZE);
+        assertThat(testOrderLineItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
         assertThat(testOrderLineItem.getRemark()).isEqualTo(DEFAULT_REMARK);
         assertThat(testOrderLineItem.getImages()).isEqualTo(DEFAULT_IMAGES);
         assertThat(testOrderLineItem.getImagesContentType()).isEqualTo(DEFAULT_IMAGES_CONTENT_TYPE);
@@ -243,10 +254,12 @@ public class OrderLineItemResourceIT {
             .andExpect(jsonPath("$.[*].originPrice").value(hasItem(DEFAULT_ORIGIN_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].salePrice").value(hasItem(DEFAULT_SALE_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].tax").value(hasItem(DEFAULT_TAX.intValue())))
+            .andExpect(jsonPath("$.[*].totalPay").value(hasItem(DEFAULT_TOTAL_PAY.intValue())))
             .andExpect(jsonPath("$.[*].goodsName").value(hasItem(DEFAULT_GOODS_NAME.toString())))
             .andExpect(jsonPath("$.[*].goodsId").value(hasItem(DEFAULT_GOODS_ID.toString())))
             .andExpect(jsonPath("$.[*].goodsSKU").value(hasItem(DEFAULT_GOODS_SKU.toString())))
             .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE.toString())))
+            .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
             .andExpect(jsonPath("$.[*].remark").value(hasItem(DEFAULT_REMARK.toString())))
             .andExpect(jsonPath("$.[*].imagesContentType").value(hasItem(DEFAULT_IMAGES_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].images").value(hasItem(DEFAULT_IMAGES)))
@@ -268,10 +281,12 @@ public class OrderLineItemResourceIT {
             .andExpect(jsonPath("$.originPrice").value(DEFAULT_ORIGIN_PRICE.intValue()))
             .andExpect(jsonPath("$.salePrice").value(DEFAULT_SALE_PRICE.intValue()))
             .andExpect(jsonPath("$.tax").value(DEFAULT_TAX.intValue()))
+            .andExpect(jsonPath("$.totalPay").value(DEFAULT_TOTAL_PAY.intValue()))
             .andExpect(jsonPath("$.goodsName").value(DEFAULT_GOODS_NAME.toString()))
             .andExpect(jsonPath("$.goodsId").value(DEFAULT_GOODS_ID.toString()))
             .andExpect(jsonPath("$.goodsSKU").value(DEFAULT_GOODS_SKU.toString()))
             .andExpect(jsonPath("$.size").value(DEFAULT_SIZE.toString()))
+            .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
             .andExpect(jsonPath("$.remark").value(DEFAULT_REMARK.toString()))
             .andExpect(jsonPath("$.imagesContentType").value(DEFAULT_IMAGES_CONTENT_TYPE))
             .andExpect(jsonPath("$.images").value(DEFAULT_IMAGES))
@@ -303,10 +318,12 @@ public class OrderLineItemResourceIT {
             .originPrice(UPDATED_ORIGIN_PRICE)
             .salePrice(UPDATED_SALE_PRICE)
             .tax(UPDATED_TAX)
+            .totalPay(UPDATED_TOTAL_PAY)
             .goodsName(UPDATED_GOODS_NAME)
             .goodsId(UPDATED_GOODS_ID)
             .goodsSKU(UPDATED_GOODS_SKU)
             .size(UPDATED_SIZE)
+            .quantity(UPDATED_QUANTITY)
             .remark(UPDATED_REMARK)
             .images(UPDATED_IMAGES)
             .imagesContentType(UPDATED_IMAGES_CONTENT_TYPE)
@@ -325,10 +342,12 @@ public class OrderLineItemResourceIT {
         assertThat(testOrderLineItem.getOriginPrice()).isEqualTo(UPDATED_ORIGIN_PRICE);
         assertThat(testOrderLineItem.getSalePrice()).isEqualTo(UPDATED_SALE_PRICE);
         assertThat(testOrderLineItem.getTax()).isEqualTo(UPDATED_TAX);
+        assertThat(testOrderLineItem.getTotalPay()).isEqualTo(UPDATED_TOTAL_PAY);
         assertThat(testOrderLineItem.getGoodsName()).isEqualTo(UPDATED_GOODS_NAME);
         assertThat(testOrderLineItem.getGoodsId()).isEqualTo(UPDATED_GOODS_ID);
         assertThat(testOrderLineItem.getGoodsSKU()).isEqualTo(UPDATED_GOODS_SKU);
         assertThat(testOrderLineItem.getSize()).isEqualTo(UPDATED_SIZE);
+        assertThat(testOrderLineItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
         assertThat(testOrderLineItem.getRemark()).isEqualTo(UPDATED_REMARK);
         assertThat(testOrderLineItem.getImages()).isEqualTo(UPDATED_IMAGES);
         assertThat(testOrderLineItem.getImagesContentType()).isEqualTo(UPDATED_IMAGES_CONTENT_TYPE);

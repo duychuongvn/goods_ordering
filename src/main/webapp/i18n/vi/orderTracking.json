@@ -17,6 +17,7 @@
       },
       "deliveryStatus": "Delivery Status",
       "dateTime": "Date Time",
+      "remark": "Remark",
       "createdAt": "Created At",
       "lastUpdatedAt": "Last Updated At",
       "createdBy": "Created By",

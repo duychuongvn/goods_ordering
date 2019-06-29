@@ -1,0 +1,11 @@
+{
+  "goodsorderApp": {
+    "PaymentStatus": {
+      "null": "",
+      "PENDING": "PENDING",
+      "PART_RECEIVED": "PART_RECEIVED",
+      "FULL_RECEIVED": "FULL_RECEIVED",
+      "REFUNDED": "REFUNDED"
+    }
+  }
+}

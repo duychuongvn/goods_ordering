@@ -1,0 +1,29 @@
+{
+  "goodsorderApp": {
+    "transaction": {
+      "home": {
+        "title": "Transactions",
+        "createLabel": "Create a new Transaction",
+        "createOrEditLabel": "Create or edit a Transaction"
+      },
+      "created": "A new Transaction is created with identifier {{ param }}",
+      "updated": "A Transaction is updated with identifier {{ param }}",
+      "deleted": "A Transaction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaction"
+      },
+      "transactionType": "Transaction Type",
+      "transactionDate": "Transaction Date",
+      "amount": "Amount",
+      "paymentMethod": "Payment Method",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By",
+      "payment": "Payment"
+    }
+  }
+}

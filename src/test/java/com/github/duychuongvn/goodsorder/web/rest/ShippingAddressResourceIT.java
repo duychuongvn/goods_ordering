@@ -51,11 +51,8 @@ public class ShippingAddressResourceIT {
     private static final String DEFAULT_PHONE_2 = "AAAAAAAAAA";
     private static final String UPDATED_PHONE_2 = "BBBBBBBBBB";
 
-    private static final String DEFAULT_EMAIL_1 = "AAAAAAAAAA";
-    private static final String UPDATED_EMAIL_1 = "BBBBBBBBBB";
-
-    private static final String DEFAULT_EMAIL_2 = "AAAAAAAAAA";
-    private static final String UPDATED_EMAIL_2 = "BBBBBBBBBB";
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
     private static final String DEFAULT_ZIP_CODE = "AAAAAAAAAA";
     private static final String UPDATED_ZIP_CODE = "BBBBBBBBBB";
@@ -130,8 +127,7 @@ public class ShippingAddressResourceIT {
             .address2(DEFAULT_ADDRESS_2)
             .phone1(DEFAULT_PHONE_1)
             .phone2(DEFAULT_PHONE_2)
-            .email1(DEFAULT_EMAIL_1)
-            .email2(DEFAULT_EMAIL_2)
+            .email(DEFAULT_EMAIL)
             .zipCode(DEFAULT_ZIP_CODE)
             .city(DEFAULT_CITY)
             .district(DEFAULT_DISTRICT)
@@ -154,8 +150,7 @@ public class ShippingAddressResourceIT {
             .address2(UPDATED_ADDRESS_2)
             .phone1(UPDATED_PHONE_1)
             .phone2(UPDATED_PHONE_2)
-            .email1(UPDATED_EMAIL_1)
-            .email2(UPDATED_EMAIL_2)
+            .email(UPDATED_EMAIL)
             .zipCode(UPDATED_ZIP_CODE)
             .city(UPDATED_CITY)
             .district(UPDATED_DISTRICT)
@@ -191,8 +186,7 @@ public class ShippingAddressResourceIT {
         assertThat(testShippingAddress.getAddress2()).isEqualTo(DEFAULT_ADDRESS_2);
         assertThat(testShippingAddress.getPhone1()).isEqualTo(DEFAULT_PHONE_1);
         assertThat(testShippingAddress.getPhone2()).isEqualTo(DEFAULT_PHONE_2);
-        assertThat(testShippingAddress.getEmail1()).isEqualTo(DEFAULT_EMAIL_1);
-        assertThat(testShippingAddress.getEmail2()).isEqualTo(DEFAULT_EMAIL_2);
+        assertThat(testShippingAddress.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testShippingAddress.getZipCode()).isEqualTo(DEFAULT_ZIP_CODE);
         assertThat(testShippingAddress.getCity()).isEqualTo(DEFAULT_CITY);
         assertThat(testShippingAddress.getDistrict()).isEqualTo(DEFAULT_DISTRICT);
@@ -238,8 +232,7 @@ public class ShippingAddressResourceIT {
             .andExpect(jsonPath("$.[*].address2").value(hasItem(DEFAULT_ADDRESS_2.toString())))
             .andExpect(jsonPath("$.[*].phone1").value(hasItem(DEFAULT_PHONE_1.toString())))
             .andExpect(jsonPath("$.[*].phone2").value(hasItem(DEFAULT_PHONE_2.toString())))
-            .andExpect(jsonPath("$.[*].email1").value(hasItem(DEFAULT_EMAIL_1.toString())))
-            .andExpect(jsonPath("$.[*].email2").value(hasItem(DEFAULT_EMAIL_2.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].zipCode").value(hasItem(DEFAULT_ZIP_CODE.toString())))
             .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())))
             .andExpect(jsonPath("$.[*].district").value(hasItem(DEFAULT_DISTRICT.toString())))
@@ -265,8 +258,7 @@ public class ShippingAddressResourceIT {
             .andExpect(jsonPath("$.address2").value(DEFAULT_ADDRESS_2.toString()))
             .andExpect(jsonPath("$.phone1").value(DEFAULT_PHONE_1.toString()))
             .andExpect(jsonPath("$.phone2").value(DEFAULT_PHONE_2.toString()))
-            .andExpect(jsonPath("$.email1").value(DEFAULT_EMAIL_1.toString()))
-            .andExpect(jsonPath("$.email2").value(DEFAULT_EMAIL_2.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.zipCode").value(DEFAULT_ZIP_CODE.toString()))
             .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()))
             .andExpect(jsonPath("$.district").value(DEFAULT_DISTRICT.toString()))
@@ -302,8 +294,7 @@ public class ShippingAddressResourceIT {
             .address2(UPDATED_ADDRESS_2)
             .phone1(UPDATED_PHONE_1)
             .phone2(UPDATED_PHONE_2)
-            .email1(UPDATED_EMAIL_1)
-            .email2(UPDATED_EMAIL_2)
+            .email(UPDATED_EMAIL)
             .zipCode(UPDATED_ZIP_CODE)
             .city(UPDATED_CITY)
             .district(UPDATED_DISTRICT)
@@ -326,8 +317,7 @@ public class ShippingAddressResourceIT {
         assertThat(testShippingAddress.getAddress2()).isEqualTo(UPDATED_ADDRESS_2);
         assertThat(testShippingAddress.getPhone1()).isEqualTo(UPDATED_PHONE_1);
         assertThat(testShippingAddress.getPhone2()).isEqualTo(UPDATED_PHONE_2);
-        assertThat(testShippingAddress.getEmail1()).isEqualTo(UPDATED_EMAIL_1);
-        assertThat(testShippingAddress.getEmail2()).isEqualTo(UPDATED_EMAIL_2);
+        assertThat(testShippingAddress.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testShippingAddress.getZipCode()).isEqualTo(UPDATED_ZIP_CODE);
         assertThat(testShippingAddress.getCity()).isEqualTo(UPDATED_CITY);
         assertThat(testShippingAddress.getDistrict()).isEqualTo(UPDATED_DISTRICT);

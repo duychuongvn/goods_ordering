@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="payment">
+            <h2><span jhiTranslate="goodsorderApp.payment.detail.title">Payment</span> {{payment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.payment.paymentCode">Payment Code</span></dt>
+                <dd>
+                    <span>{{payment.paymentCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.paymentStatus">Payment Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'goodsorderApp.PaymentStatus.' + payment.paymentStatus}}">{{payment.paymentStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.receivedAmount">Received Amount</span></dt>
+                <dd>
+                    <span>{{payment.receivedAmount}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.paidTime">Paid Time</span></dt>
+                <dd>
+                    <span>{{payment.paidTime}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.bankAccount">Bank Account</span></dt>
+                <dd>
+                    <span>{{payment.bankAccount}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.bankAccountHolder">Bank Account Holder</span></dt>
+                <dd>
+                    <span>{{payment.bankAccountHolder}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.bankInfo">Bank Info</span></dt>
+                <dd>
+                    <span>{{payment.bankInfo}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{payment.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.lastUpdatedAt">Last Updated At</span></dt>
+                <dd>
+                    <span>{{payment.lastUpdatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{payment.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.payment.lastUpdatedBy">Last Updated By</span></dt>
+                <dd>
+                    <span>{{payment.lastUpdatedBy}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/payment', payment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+{
+    "name": "Transaction",
+    "fields": [
+        {
+            "fieldName": "transactionType",
+            "fieldType": "TransactionType",
+            "fieldValues": "DEPOSIT,PARTIAL,FULL"
+        },
+        {
+            "fieldName": "transactionDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "paymentMethod",
+            "fieldType": "PaymentMethod",
+            "fieldValues": "BANK_TRANSFER,CASH"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "lastUpdatedAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "payment",
+            "otherEntityName": "payment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190629161857",
+    "entityTableName": "transaction",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -2,13 +2,20 @@
     "name": "Order",
     "fields": [
         {
+            "fieldName": "paymentCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "orderDate",
             "fieldType": "ZonedDateTime"
         },
         {
             "fieldName": "status",
             "fieldType": "OrderStatus",
-            "fieldValues": "PENDING,CONFIRMED,DEPOSITED,PAID",
+            "fieldValues": "PENDING,CONFIRMED,DEPOSITED,PAID,CANCELED",
             "fieldValidateRules": [
                 "required"
             ]
@@ -26,7 +33,79 @@
             ]
         },
         {
+            "fieldName": "exchangeRate",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "totalJpyPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "deliveryFeeVnd",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "totalPayVnd",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "depositedVnd",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "paidVnd",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "packingDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "estimatedDeliverDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "deliveredDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "finishPaymentTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
             "fieldName": "remark",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone1",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone2",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "zipCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "district",
             "fieldType": "String"
         },
         {
@@ -47,6 +126,14 @@
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "payment",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "payment",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
         {
             "relationshipType": "one-to-many",
             "otherEntityName": "orderLineItem",

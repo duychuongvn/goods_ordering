@@ -12,6 +12,9 @@
         "orderLineItem": "Order Line Item",
         "shippingAddress": "Shipping Address",
         "exchangeRate": "Exchange Rate",
+        "payment": "Payment",
+        "transaction": "Transaction",
+        "bankAccount": "Bank Account",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

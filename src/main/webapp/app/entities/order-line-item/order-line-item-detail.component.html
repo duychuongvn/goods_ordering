@@ -21,6 +21,10 @@
                 <dd>
                     <span>{{orderLineItem.tax}}</span>
                 </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.totalPay">Total Pay</span></dt>
+                <dd>
+                    <span>{{orderLineItem.totalPay}}</span>
+                </dd>
                 <dt><span jhiTranslate="goodsorderApp.orderLineItem.goodsName">Goods Name</span></dt>
                 <dd>
                     <span>{{orderLineItem.goodsName}}</span>
@@ -37,14 +41,19 @@
                 <dd>
                     <span>{{orderLineItem.size}}</span>
                 </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderLineItem.quantity">Quantity</span></dt>
+                <dd>
+                    <span>{{orderLineItem.quantity}}</span>
+                </dd>
                 <dt><span jhiTranslate="goodsorderApp.orderLineItem.remark">Remark</span></dt>
                 <dd>
                     <span>{{orderLineItem.remark}}</span>
                 </dd>
                 <dt><span jhiTranslate="goodsorderApp.orderLineItem.images">Images</span></dt>
                 <dd>
-                    <div *ngIf="orderLineItem.images">
-                        <div *ngFor="let image of orderLineItem.images ">
+                    <div *ngIf="orderLineItem.images" class="row">
+
+                        <div class="col-md" *ngFor="let image of orderLineItem.images ">
                             <img src="{{image}}"/>
                         </div>
                     </div>

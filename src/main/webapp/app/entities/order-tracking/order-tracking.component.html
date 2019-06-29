@@ -17,6 +17,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="goodsorderApp.orderTracking.deliveryStatus">Delivery Status</span></th>
             <th><span jhiTranslate="goodsorderApp.orderTracking.dateTime">Date Time</span></th>
+            <th><span jhiTranslate="goodsorderApp.orderTracking.remark">Remark</span></th>
             <th><span jhiTranslate="goodsorderApp.orderTracking.createdAt">Created At</span></th>
             <th><span jhiTranslate="goodsorderApp.orderTracking.lastUpdatedAt">Last Updated At</span></th>
             <th><span jhiTranslate="goodsorderApp.orderTracking.createdBy">Created By</span></th>
@@ -30,6 +31,7 @@
                 <td><a [routerLink]="['/order-tracking', orderTracking.id, 'view' ]">{{orderTracking.id}}</a></td>
                 <td jhiTranslate="{{'goodsorderApp.DeliveryStatus.' + orderTracking.deliveryStatus}}">{{orderTracking.deliveryStatus}}</td>
                 <td>{{orderTracking.dateTime | date:'medium'}}</td>
+                <td>{{orderTracking.remark}}</td>
                 <td>{{orderTracking.createdAt | date:'medium'}}</td>
                 <td>{{orderTracking.lastUpdatedAt | date:'medium'}}</td>
                 <td>{{orderTracking.createdBy}}</td>

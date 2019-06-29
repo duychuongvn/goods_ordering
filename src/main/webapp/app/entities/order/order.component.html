@@ -15,15 +15,35 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.paymentCode">Payment Code</span></th>
             <th><span jhiTranslate="goodsorderApp.order.orderDate">Order Date</span></th>
             <th><span jhiTranslate="goodsorderApp.order.status">Status</span></th>
             <th><span jhiTranslate="goodsorderApp.order.deliveryStatus">Delivery Status</span></th>
             <th><span jhiTranslate="goodsorderApp.order.exchangeRateId">Exchange Rate Id</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.exchangeRate">Exchange Rate</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.totalJpyPrice">Total Jpy Price</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.deliveryFeeVnd">Delivery Fee Vnd</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.totalPayVnd">Total Pay Vnd</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.depositedVnd">Deposited Vnd</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.paidVnd">Paid Vnd</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.packingDate">Packing Date</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.estimatedDeliverDate">Estimated Deliver Date</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.deliveredDate">Delivered Date</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.finishPaymentTime">Finish Payment Time</span></th>
             <th><span jhiTranslate="goodsorderApp.order.remark">Remark</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.address1">Address 1</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.address2">Address 2</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.phone1">Phone 1</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.phone2">Phone 2</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.email">Email</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.zipCode">Zip Code</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.city">City</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.district">District</span></th>
             <th><span jhiTranslate="goodsorderApp.order.createdAt">Created At</span></th>
             <th><span jhiTranslate="goodsorderApp.order.lastUpdatedAt">Last Updated At</span></th>
             <th><span jhiTranslate="goodsorderApp.order.createdBy">Created By</span></th>
             <th><span jhiTranslate="goodsorderApp.order.lastUpdatedBy">Last Updated By</span></th>
+            <th><span jhiTranslate="goodsorderApp.order.payment">Payment</span></th>
             <th><span jhiTranslate="goodsorderApp.order.user">User</span></th>
             <th><span jhiTranslate="goodsorderApp.order.merchant">Merchant</span></th>
             <th></th>
@@ -32,15 +52,39 @@
             <tbody>
             <tr *ngFor="let order of orders ;trackBy: trackId">
                 <td><a [routerLink]="['/order', order.id, 'view' ]">{{order.id}}</a></td>
+                <td>{{order.paymentCode}}</td>
                 <td>{{order.orderDate | date:'medium'}}</td>
                 <td jhiTranslate="{{'goodsorderApp.OrderStatus.' + order.status}}">{{order.status}}</td>
                 <td jhiTranslate="{{'goodsorderApp.DeliveryStatus.' + order.deliveryStatus}}">{{order.deliveryStatus}}</td>
                 <td>{{order.exchangeRateId}}</td>
+                <td>{{order.exchangeRate}}</td>
+                <td>{{order.totalJpyPrice}}</td>
+                <td>{{order.deliveryFeeVnd}}</td>
+                <td>{{order.totalPayVnd}}</td>
+                <td>{{order.depositedVnd}}</td>
+                <td>{{order.paidVnd}}</td>
+                <td>{{order.packingDate | date:'mediumDate'}}</td>
+                <td>{{order.estimatedDeliverDate | date:'mediumDate'}}</td>
+                <td>{{order.deliveredDate | date:'mediumDate'}}</td>
+                <td>{{order.finishPaymentTime | date:'medium'}}</td>
                 <td>{{order.remark}}</td>
+                <td>{{order.address1}}</td>
+                <td>{{order.address2}}</td>
+                <td>{{order.phone1}}</td>
+                <td>{{order.phone2}}</td>
+                <td>{{order.email}}</td>
+                <td>{{order.zipCode}}</td>
+                <td>{{order.city}}</td>
+                <td>{{order.district}}</td>
                 <td>{{order.createdAt | date:'medium'}}</td>
                 <td>{{order.lastUpdatedAt | date:'medium'}}</td>
                 <td>{{order.createdBy}}</td>
                 <td>{{order.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="order.payment">
+                        <a [routerLink]="['../payment', order.payment?.id, 'view' ]" >{{order.payment?.id}}</a>
+                    </div>
+                </td>
                 <td>
                     {{order.user?.id}}
                 </td>

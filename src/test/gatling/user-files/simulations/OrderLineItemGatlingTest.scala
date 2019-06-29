@@ -76,10 +76,12 @@ class OrderLineItemGatlingTest extends Simulation {
                 , "originPrice":"0"
                 , "salePrice":"0"
                 , "tax":"0"
+                , "totalPay":"0"
                 , "goodsName":"SAMPLE_TEXT"
                 , "goodsId":"SAMPLE_TEXT"
                 , "goodsSKU":"SAMPLE_TEXT"
                 , "size":"SAMPLE_TEXT"
+                , "quantity":"0"
                 , "remark":"SAMPLE_TEXT"
                 , "images":null
                 , "source":"AEO_JP"

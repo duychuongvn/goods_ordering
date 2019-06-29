@@ -1,0 +1,29 @@
+{
+  "goodsorderApp": {
+    "transaction": {
+      "home": {
+        "title": "Transactions",
+        "createLabel": "Thêm mới một Transaction",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Transaction"
+      },
+      "created": "Một Transaction mới được tạo với định danh {{ param }}",
+      "updated": "Một Transaction cập nhật với định danh {{ param }}",
+      "deleted": "Một Transaction đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaction"
+      },
+      "transactionType": "Transaction Type",
+      "transactionDate": "Transaction Date",
+      "amount": "Amount",
+      "paymentMethod": "Payment Method",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By",
+      "payment": "Payment"
+    }
+  }
+}

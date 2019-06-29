@@ -52,6 +52,11 @@ export class OrderService {
   protected convertDateFromClient(order: IOrder): IOrder {
     const copy: IOrder = Object.assign({}, order, {
       orderDate: order.orderDate != null && order.orderDate.isValid() ? order.orderDate.toJSON() : null,
+      packingDate: order.packingDate != null && order.packingDate.isValid() ? order.packingDate.format(DATE_FORMAT) : null,
+      estimatedDeliverDate:
+        order.estimatedDeliverDate != null && order.estimatedDeliverDate.isValid() ? order.estimatedDeliverDate.format(DATE_FORMAT) : null,
+      deliveredDate: order.deliveredDate != null && order.deliveredDate.isValid() ? order.deliveredDate.format(DATE_FORMAT) : null,
+      finishPaymentTime: order.finishPaymentTime != null && order.finishPaymentTime.isValid() ? order.finishPaymentTime.toJSON() : null,
       createdAt: order.createdAt != null && order.createdAt.isValid() ? order.createdAt.toJSON() : null,
       lastUpdatedAt: order.lastUpdatedAt != null && order.lastUpdatedAt.isValid() ? order.lastUpdatedAt.toJSON() : null
     });
@@ -61,6 +66,10 @@ export class OrderService {
   protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
     if (res.body) {
       res.body.orderDate = res.body.orderDate != null ? moment(res.body.orderDate) : null;
+      res.body.packingDate = res.body.packingDate != null ? moment(res.body.packingDate) : null;
+      res.body.estimatedDeliverDate = res.body.estimatedDeliverDate != null ? moment(res.body.estimatedDeliverDate) : null;
+      res.body.deliveredDate = res.body.deliveredDate != null ? moment(res.body.deliveredDate) : null;
+      res.body.finishPaymentTime = res.body.finishPaymentTime != null ? moment(res.body.finishPaymentTime) : null;
       res.body.createdAt = res.body.createdAt != null ? moment(res.body.createdAt) : null;
       res.body.lastUpdatedAt = res.body.lastUpdatedAt != null ? moment(res.body.lastUpdatedAt) : null;
     }
@@ -71,6 +80,10 @@ export class OrderService {
     if (res.body) {
       res.body.forEach((order: IOrder) => {
         order.orderDate = order.orderDate != null ? moment(order.orderDate) : null;
+        order.packingDate = order.packingDate != null ? moment(order.packingDate) : null;
+        order.estimatedDeliverDate = order.estimatedDeliverDate != null ? moment(order.estimatedDeliverDate) : null;
+        order.deliveredDate = order.deliveredDate != null ? moment(order.deliveredDate) : null;
+        order.finishPaymentTime = order.finishPaymentTime != null ? moment(order.finishPaymentTime) : null;
         order.createdAt = order.createdAt != null ? moment(order.createdAt) : null;
         order.lastUpdatedAt = order.lastUpdatedAt != null ? moment(order.lastUpdatedAt) : null;
       });

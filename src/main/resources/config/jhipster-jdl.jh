@@ -3,19 +3,85 @@ entity User {
 }
 entity Order {
 	id Long required
+	paymentCode String required
     orderDate ZonedDateTime
     status OrderStatus required
     deliveryStatus DeliveryStatus
     exchangeRateId String required
+    exchangeRate BigDecimal
+    totalJpyPrice BigDecimal
+    deliveryFeeVnd BigDecimal
+    totalPayVnd BigDecimal
+    depositedVnd BigDecimal
+    paidVnd BigDecimal
+    packingDate LocalDate
+    estimatedDeliverDate LocalDate
+    deliveredDate LocalDate
+    finishPaymentTime ZonedDateTime
     remark String
+    address1 String
+    address2 String
+    phone1 String
+    phone2 String
+    email String
+    zipCode String
+    city String
+    district String
     createdAt ZonedDateTime
     lastUpdatedAt ZonedDateTime
     createdBy String
     lastUpdatedBy String
 }
 
+entity Payment {
+    id Long required
+    paymentCode String
+    paymentStatus PaymentStatus
+    receivedAmount BigDecimal
+    paidTime ZonedDateTime
+    bankAccount String
+    bankAccountHolder String
+    bankInfo String
+    createdAt ZonedDateTime
+    lastUpdatedAt ZonedDateTime
+    createdBy String
+    lastUpdatedBy String
+}
+entity Transaction {
+    id Long required
+    transactionType TransactionType
+    transactionDate ZonedDateTime
+    amount BigDecimal
+    paymentMethod PaymentMethod
+    createdAt ZonedDateTime
+    lastUpdatedAt ZonedDateTime
+    createdBy String
+    lastUpdatedBy String
+
+}
+entity BankAccount {
+    id Long required
+    account String
+    fullName String
+    bankInfo String
+    createdAt ZonedDateTime
+    lastUpdatedAt ZonedDateTime
+    createdBy String
+    lastUpdatedBy String
+}
+
+enum PaymentMethod {
+    BANK_TRANSFER, CASH
+}
+enum PaymentStatus {
+    PENDING, PART_RECEIVED, FULL_RECEIVED, REFUNDED
+}
+
+enum TransactionType {
+    DEPOSIT, PARTIAL, FULL
+}
 enum OrderStatus {
-   PENDING, CONFIRMED, DEPOSITED, PAID
+   PENDING, CONFIRMED, DEPOSITED, PAID, CANCELED
 }
 enum DeliveryStatus {
 	INIT, PICKED_UP, ON_BOARDING, ARRIVED, SENDING, DONE
@@ -25,6 +91,7 @@ entity OrderTracking {
 	id Long required
     deliveryStatus DeliveryStatus
     dateTime ZonedDateTime
+    remark String
   	createdAt ZonedDateTime
     lastUpdatedAt ZonedDateTime
     createdBy String
@@ -37,10 +104,12 @@ entity OrderLineItem {
     originPrice BigDecimal
     salePrice BigDecimal
     tax	BigDecimal
+    totalPay BigDecimal
     goodsName String
     goodsId String
     goodsSKU String
     size String
+    quantity Integer
     remark String
     images Blob
     source OrderSource
@@ -55,8 +124,7 @@ entity ShippingAddress {
     address2 String
     phone1 String
     phone2 String
-    email1 String
-    email2 String
+    email String
     zipCode String
     city String
     district String
@@ -75,6 +143,10 @@ entity ExchangeRate {
   createdBy String
   lastUpdatedBy String
 }
+
+relationship OneToOne {
+    Order {payment} to Payment
+}
 relationship ManyToOne {
 	Order {user} to User
     Order {merchant} to User
@@ -82,7 +154,8 @@ relationship ManyToOne {
 }
 relationship OneToMany {
 	Order {orderLineItems} to OrderLineItem,
-    Order {orderTrackings} to OrderTracking
+    Order {orderTrackings} to OrderTracking,
+    Payment {transactions} to Transaction
 }
 
 

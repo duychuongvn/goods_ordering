@@ -1,0 +1,32 @@
+{
+  "goodsorderApp": {
+    "payment": {
+      "home": {
+        "title": "Payments",
+        "createLabel": "Thêm mới một Payment",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Payment"
+      },
+      "created": "Một Payment mới được tạo với định danh {{ param }}",
+      "updated": "Một Payment cập nhật với định danh {{ param }}",
+      "deleted": "Một Payment đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Payment {{ id }}?"
+      },
+      "detail": {
+        "title": "Payment"
+      },
+      "paymentCode": "Payment Code",
+      "paymentStatus": "Payment Status",
+      "receivedAmount": "Received Amount",
+      "paidTime": "Paid Time",
+      "bankAccount": "Bank Account",
+      "bankAccountHolder": "Bank Account Holder",
+      "bankInfo": "Bank Info",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By",
+      "transactions": "Transactions"
+    }
+  }
+}

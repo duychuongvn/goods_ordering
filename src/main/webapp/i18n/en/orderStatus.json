@@ -5,7 +5,8 @@
       "PENDING": "PENDING",
       "CONFIRMED": "CONFIRMED",
       "DEPOSITED": "DEPOSITED",
-      "PAID": "PAID"
+      "PAID": "PAID",
+      "CANCELED": "CANCELED"
     }
   }
 }
