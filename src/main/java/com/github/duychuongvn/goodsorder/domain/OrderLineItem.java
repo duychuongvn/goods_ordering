@@ -2,6 +2,7 @@ package com.github.duychuongvn.goodsorder.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.github.duychuongvn.core.usertype.Blob2List;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -10,15 +11,20 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import com.github.duychuongvn.goodsorder.domain.enumeration.OrderSource;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 /**
  * A OrderLineItem.
  */
 @Entity
 @Table(name = "order_line_item")
+@TypeDef(typeClass = Blob2List.class, name = "serializedList")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class OrderLineItem implements Serializable {
 
@@ -58,7 +64,8 @@ public class OrderLineItem implements Serializable {
 
     @Lob
     @Column(name = "images")
-    private byte[] images;
+    @Type(type = "serializedList")
+    private List<String> images = new ArrayList<>();
 
     @Column(name = "images_content_type")
     private String imagesContentType;
@@ -197,16 +204,16 @@ public class OrderLineItem implements Serializable {
         this.remark = remark;
     }
 
-    public byte[] getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public OrderLineItem images(byte[] images) {
+    public OrderLineItem images(List<String> images) {
         this.images = images;
         return this;
     }
 
-    public void setImages(byte[] images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 

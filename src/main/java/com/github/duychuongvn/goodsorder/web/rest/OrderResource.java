@@ -87,7 +87,7 @@ public class OrderResource {
     @GetMapping("/orders")
     public List<Order> getAllOrders() {
         log.debug("REST request to get all Orders");
-        return orderService.findAll();
+        return orderService.findByCurrentUser();
     }
 
     /**

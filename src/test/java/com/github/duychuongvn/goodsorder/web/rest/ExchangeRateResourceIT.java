@@ -156,7 +156,7 @@ public class ExchangeRateResourceIT {
         int databaseSizeBeforeCreate = exchangeRateRepository.findAll().size();
 
         // Create the ExchangeRate with an existing ID
-        exchangeRate.setId(1L);
+        exchangeRate.setId("20190630");
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restExchangeRateMockMvc.perform(post("/api/exchange-rates")
@@ -180,14 +180,14 @@ public class ExchangeRateResourceIT {
         restExchangeRateMockMvc.perform(get("/api/exchange-rates?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(exchangeRate.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(exchangeRate.getId())))
             .andExpect(jsonPath("$.[*].rate").value(hasItem(DEFAULT_RATE.intValue())))
             .andExpect(jsonPath("$.[*].createdAt").value(hasItem(sameInstant(DEFAULT_CREATED_AT))))
             .andExpect(jsonPath("$.[*].lastUpdatedAt").value(hasItem(sameInstant(DEFAULT_LAST_UPDATED_AT))))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
             .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getExchangeRate() throws Exception {
@@ -198,7 +198,7 @@ public class ExchangeRateResourceIT {
         restExchangeRateMockMvc.perform(get("/api/exchange-rates/{id}", exchangeRate.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(exchangeRate.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(exchangeRate.getId()))
             .andExpect(jsonPath("$.rate").value(DEFAULT_RATE.intValue()))
             .andExpect(jsonPath("$.createdAt").value(sameInstant(DEFAULT_CREATED_AT)))
             .andExpect(jsonPath("$.lastUpdatedAt").value(sameInstant(DEFAULT_LAST_UPDATED_AT)))
@@ -290,11 +290,11 @@ public class ExchangeRateResourceIT {
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(ExchangeRate.class);
         ExchangeRate exchangeRate1 = new ExchangeRate();
-        exchangeRate1.setId(1L);
+        exchangeRate1.setId("20190630");
         ExchangeRate exchangeRate2 = new ExchangeRate();
         exchangeRate2.setId(exchangeRate1.getId());
         assertThat(exchangeRate1).isEqualTo(exchangeRate2);
-        exchangeRate2.setId(2L);
+        exchangeRate2.setId("20190629");
         assertThat(exchangeRate1).isNotEqualTo(exchangeRate2);
         exchangeRate1.setId(null);
         assertThat(exchangeRate1).isNotEqualTo(exchangeRate2);

@@ -60,7 +60,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
      */
     @Override
     @Transactional(readOnly = true)
-    public Optional<ExchangeRate> findOne(Long id) {
+    public Optional<ExchangeRate> findOne(String id) {
         log.debug("Request to get ExchangeRate : {}", id);
         return exchangeRateRepository.findById(id);
     }
@@ -71,7 +71,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
      * @param id the id of the entity.
      */
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         log.debug("Request to delete ExchangeRate : {}", id);
         exchangeRateRepository.deleteById(id);
     }

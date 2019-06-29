@@ -96,7 +96,7 @@ public class ExchangeRateResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the exchangeRate, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/exchange-rates/{id}")
-    public ResponseEntity<ExchangeRate> getExchangeRate(@PathVariable Long id) {
+    public ResponseEntity<ExchangeRate> getExchangeRate(@PathVariable String id) {
         log.debug("REST request to get ExchangeRate : {}", id);
         Optional<ExchangeRate> exchangeRate = exchangeRateService.findOne(id);
         return ResponseUtil.wrapOrNotFound(exchangeRate);
@@ -109,7 +109,7 @@ public class ExchangeRateResource {
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/exchange-rates/{id}")
-    public ResponseEntity<Void> deleteExchangeRate(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteExchangeRate(@PathVariable String id) {
         log.debug("REST request to delete ExchangeRate : {}", id);
         exchangeRateService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();

@@ -32,12 +32,12 @@ public interface ExchangeRateService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<ExchangeRate> findOne(Long id);
+    Optional<ExchangeRate> findOne(String id);
 
     /**
      * Delete the "id" exchangeRate.
      *
      * @param id the id of the entity.
      */
-    void delete(Long id);
+    void delete(String id);
 }

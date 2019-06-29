@@ -23,7 +23,7 @@ public class ExchangeRate implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(name = "rate", precision = 21, scale = 2)
     private BigDecimal rate;
@@ -41,11 +41,11 @@ public class ExchangeRate implements Serializable {
     private String lastUpdatedBy;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

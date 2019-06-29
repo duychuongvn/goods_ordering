@@ -51,6 +51,10 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
+    @Override
+    public List<Order> findByCurrentUser() {
+        return orderRepository.findByUserIsCurrentUser();
+    }
 
     /**
      * Get one order by id.

@@ -43,8 +43,9 @@
                 <td>{{orderLineItem.size}}</td>
                 <td>{{orderLineItem.remark}}</td>
                 <td>
-                    <a *ngIf="orderLineItem.images" (click)="openFile(orderLineItem.imagesContentType, orderLineItem.images)" jhiTranslate="entity.action.open">open</a>
-                    <span *ngIf="orderLineItem.images">{{orderLineItem.imagesContentType}}, {{byteSize(orderLineItem.images)}}</span>
+                    <div *ngIf="orderLineItem.images">
+                       <img width="50px" height="50px" src="{{orderLineItem.images[0]}}">
+                    </div>
                 </td>
                 <td jhiTranslate="{{'goodsorderApp.OrderSource.' + orderLineItem.source}}">{{orderLineItem.source}}</td>
                 <td>

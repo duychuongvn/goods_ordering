@@ -22,6 +22,8 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static com.github.duychuongvn.goodsorder.web.rest.TestUtil.createFormattingConversionService;
@@ -64,8 +66,8 @@ public class OrderLineItemResourceIT {
     private static final String DEFAULT_REMARK = "AAAAAAAAAA";
     private static final String UPDATED_REMARK = "BBBBBBBBBB";
 
-    private static final byte[] DEFAULT_IMAGES = TestUtil.createByteArray(1, "0");
-    private static final byte[] UPDATED_IMAGES = TestUtil.createByteArray(1, "1");
+    private static final List<String>DEFAULT_IMAGES = Collections.singletonList("1");
+    private static final List<String> UPDATED_IMAGES = Collections.singletonList("1");
     private static final String DEFAULT_IMAGES_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_IMAGES_CONTENT_TYPE = "image/png";
 
@@ -247,10 +249,10 @@ public class OrderLineItemResourceIT {
             .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE.toString())))
             .andExpect(jsonPath("$.[*].remark").value(hasItem(DEFAULT_REMARK.toString())))
             .andExpect(jsonPath("$.[*].imagesContentType").value(hasItem(DEFAULT_IMAGES_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].images").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGES))))
+            .andExpect(jsonPath("$.[*].images").value(hasItem(DEFAULT_IMAGES)))
             .andExpect(jsonPath("$.[*].source").value(hasItem(DEFAULT_SOURCE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getOrderLineItem() throws Exception {
@@ -272,7 +274,7 @@ public class OrderLineItemResourceIT {
             .andExpect(jsonPath("$.size").value(DEFAULT_SIZE.toString()))
             .andExpect(jsonPath("$.remark").value(DEFAULT_REMARK.toString()))
             .andExpect(jsonPath("$.imagesContentType").value(DEFAULT_IMAGES_CONTENT_TYPE))
-            .andExpect(jsonPath("$.images").value(Base64Utils.encodeToString(DEFAULT_IMAGES)))
+            .andExpect(jsonPath("$.images").value(DEFAULT_IMAGES))
             .andExpect(jsonPath("$.source").value(DEFAULT_SOURCE.toString()));
     }
 

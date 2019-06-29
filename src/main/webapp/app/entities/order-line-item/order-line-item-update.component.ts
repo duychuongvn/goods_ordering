@@ -22,19 +22,7 @@ export class OrderLineItemUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    referenceUrl: [null, [Validators.required]],
-    originPrice: [],
-    salePrice: [],
-    tax: [],
-    goodsName: [],
-    goodsId: [],
-    goodsSKU: [],
-    size: [],
-    remark: [],
-    images: [],
-    imagesContentType: [],
-    source: [],
-    order: []
+    referenceUrl: [null, [Validators.required]]
   });
 
   constructor(
@@ -64,19 +52,7 @@ export class OrderLineItemUpdateComponent implements OnInit {
   updateForm(orderLineItem: IOrderLineItem) {
     this.editForm.patchValue({
       id: orderLineItem.id,
-      referenceUrl: orderLineItem.referenceUrl,
-      originPrice: orderLineItem.originPrice,
-      salePrice: orderLineItem.salePrice,
-      tax: orderLineItem.tax,
-      goodsName: orderLineItem.goodsName,
-      goodsId: orderLineItem.goodsId,
-      goodsSKU: orderLineItem.goodsSKU,
-      size: orderLineItem.size,
-      remark: orderLineItem.remark,
-      images: orderLineItem.images,
-      imagesContentType: orderLineItem.imagesContentType,
-      source: orderLineItem.source,
-      order: orderLineItem.order
+      referenceUrl: orderLineItem.referenceUrl
     });
   }
 
@@ -130,19 +106,7 @@ export class OrderLineItemUpdateComponent implements OnInit {
     const entity = {
       ...new OrderLineItem(),
       id: this.editForm.get(['id']).value,
-      referenceUrl: this.editForm.get(['referenceUrl']).value,
-      originPrice: this.editForm.get(['originPrice']).value,
-      salePrice: this.editForm.get(['salePrice']).value,
-      tax: this.editForm.get(['tax']).value,
-      goodsName: this.editForm.get(['goodsName']).value,
-      goodsId: this.editForm.get(['goodsId']).value,
-      goodsSKU: this.editForm.get(['goodsSKU']).value,
-      size: this.editForm.get(['size']).value,
-      remark: this.editForm.get(['remark']).value,
-      imagesContentType: this.editForm.get(['imagesContentType']).value,
-      images: this.editForm.get(['images']).value,
-      source: this.editForm.get(['source']).value,
-      order: this.editForm.get(['order']).value
+      referenceUrl: this.editForm.get(['referenceUrl']).value
     };
     return entity;
   }

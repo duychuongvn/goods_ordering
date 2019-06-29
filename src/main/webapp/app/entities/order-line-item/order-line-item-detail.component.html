@@ -44,8 +44,9 @@
                 <dt><span jhiTranslate="goodsorderApp.orderLineItem.images">Images</span></dt>
                 <dd>
                     <div *ngIf="orderLineItem.images">
-                        <a (click)="openFile(orderLineItem.imagesContentType, orderLineItem.images)" jhiTranslate="entity.action.open">open</a>
-                        {{orderLineItem.imagesContentType}}, {{byteSize(orderLineItem.images)}}
+                        <div *ngFor="let image of orderLineItem.images ">
+                            <img src="{{image}}"/>
+                        </div>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="goodsorderApp.orderLineItem.source">Source</span></dt>
