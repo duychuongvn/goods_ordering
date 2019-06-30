@@ -2,6 +2,7 @@ package com.github.duychuongvn.ordering.webparser.service;
 
 import com.github.duychuongvn.goodsorder.domain.enumeration.OrderSource;
 import com.github.duychuongvn.ordering.webparser.dto.AeoJPProduct;
+import com.github.duychuongvn.util.TaxUtil;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -42,6 +43,7 @@ public class AeoJPDataExtractImpl extends DataExtractBase implements DataExtract
         }
         aeoJPProduct.setReferenceUrl(url);
         aeoJPProduct.setSku(doc.getElementById("hidden_goods_sku").val());
+        aeoJPProduct.setTax(TaxUtil.getTax(OrderSource.AEO_JP, aeoJPProduct.getSalePrice()));
         aeoJPProduct.setSource(OrderSource.AEO_JP);
         return aeoJPProduct;
     }

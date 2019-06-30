@@ -1,9 +1,9 @@
 package com.github.duychuongvn.goodsorder.web.rest;
 
+import com.github.duychuongvn.goodsorder.config.Constants;
 import com.github.duychuongvn.goodsorder.domain.Order;
 import com.github.duychuongvn.goodsorder.service.OrderService;
 import com.github.duychuongvn.goodsorder.web.rest.errors.BadRequestAlertException;
-
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -102,6 +102,14 @@ public class OrderResource {
         Optional<Order> order = orderService.findOne(id);
         return ResponseUtil.wrapOrNotFound(order);
     }
+
+    @GetMapping("/orders/initialized")
+    public ResponseEntity<Order> getInitializedOrder(@PathVariable Long id, HttpSession session) {
+        log.debug("REST request to get initialized Order : {}", id);
+        Order order = (Order) session.getAttribute(Constants.SESSION_KEY_ORDER);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(order));
+    }
+
 
     /**
      * {@code DELETE  /orders/:id} : delete the "id" order.

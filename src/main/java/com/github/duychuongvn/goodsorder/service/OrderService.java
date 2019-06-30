@@ -19,6 +19,8 @@ public interface OrderService {
      */
     Order save(Order order);
 
+    Order createNewOrder();
+
     /**
      * Get all the orders.
      *

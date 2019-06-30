@@ -1,5 +1,6 @@
 package com.github.duychuongvn.goodsorder.service.impl;
 
+import com.github.duychuongvn.core.util.DateTimeUtil;
 import com.github.duychuongvn.goodsorder.service.ExchangeRateService;
 import com.github.duychuongvn.goodsorder.domain.ExchangeRate;
 import com.github.duychuongvn.goodsorder.repository.ExchangeRateRepository;
@@ -9,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,5 +77,15 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     public void delete(String id) {
         log.debug("Request to delete ExchangeRate : {}", id);
         exchangeRateRepository.deleteById(id);
+    }
+
+    @Override
+    public ExchangeRate getCurrentExchangeRate() {
+        String currentDate = DateTimeUtil.formatDate(LocalDate.now(), DateTimeUtil.YEAR_MONTH_DATE);
+        ExchangeRate rate = exchangeRateRepository.getOne(currentDate);
+        if(rate == null) {
+            rate = exchangeRateRepository.findFirstByOrderByIdDesc();
+        }
+        return rate;
     }
 }

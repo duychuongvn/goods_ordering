@@ -40,4 +40,6 @@ public interface ExchangeRateService {
      * @param id the id of the entity.
      */
     void delete(String id);
+
+    ExchangeRate getCurrentExchangeRate();
 }

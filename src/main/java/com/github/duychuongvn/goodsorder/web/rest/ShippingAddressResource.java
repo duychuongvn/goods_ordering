@@ -2,12 +2,14 @@ package com.github.duychuongvn.goodsorder.web.rest;
 
 import com.github.duychuongvn.goodsorder.domain.ShippingAddress;
 import com.github.duychuongvn.goodsorder.service.ShippingAddressService;
+import com.github.duychuongvn.goodsorder.service.UserService;
 import com.github.duychuongvn.goodsorder.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +34,9 @@ public class ShippingAddressResource {
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
+    @Autowired
+    private UserService userService;
 
     private final ShippingAddressService shippingAddressService;
 
@@ -51,6 +57,9 @@ public class ShippingAddressResource {
         if (shippingAddress.getId() != null) {
             throw new BadRequestAlertException("A new shippingAddress cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        shippingAddress.setCreatedAt(ZonedDateTime.now());
+        userService.getUserWithAuthorities().ifPresent(shippingAddress::setUser);
+        shippingAddress.setLastUpdatedAt(ZonedDateTime.now());
         ShippingAddress result = shippingAddressService.save(shippingAddress);
         return ResponseEntity.created(new URI("/api/shipping-addresses/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -72,6 +81,7 @@ public class ShippingAddressResource {
         if (shippingAddress.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
+        shippingAddress.setLastUpdatedAt(ZonedDateTime.now());
         ShippingAddress result = shippingAddressService.save(shippingAddress);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, shippingAddress.getId().toString()))

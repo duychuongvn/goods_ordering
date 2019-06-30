@@ -22,6 +22,8 @@ public class OriginProduct {
     private BigDecimal originPrice  = BigDecimal.ZERO;
     @Builder.Default
     private BigDecimal salePrice = BigDecimal.ZERO;
+    @Builder.Default
+    private BigDecimal tax = BigDecimal.ZERO;
     private OrderSource source;
     @Singular
     private List<String> images = new ArrayList<>();

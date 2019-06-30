@@ -1,6 +1,8 @@
 package com.github.duychuongvn.goodsorder.service;
 
+import com.github.duychuongvn.goodsorder.domain.Order;
 import com.github.duychuongvn.goodsorder.domain.OrderLineItem;
+import com.github.duychuongvn.goodsorder.service.dto.OrderLineItemDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,4 +42,8 @@ public interface OrderLineItemService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    Order createOrUpdateOrder(Order currentOrder, String productUrl);
+
+    Order update(OrderLineItemDto orderLineItem);
 }

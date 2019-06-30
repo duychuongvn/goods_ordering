@@ -24,11 +24,6 @@
             <th><span jhiTranslate="goodsorderApp.shippingAddress.city">City</span></th>
             <th><span jhiTranslate="goodsorderApp.shippingAddress.district">District</span></th>
             <th><span jhiTranslate="goodsorderApp.shippingAddress.defaultAddress">Default Address</span></th>
-            <th><span jhiTranslate="goodsorderApp.shippingAddress.createdAt">Created At</span></th>
-            <th><span jhiTranslate="goodsorderApp.shippingAddress.lastUpdatedAt">Last Updated At</span></th>
-            <th><span jhiTranslate="goodsorderApp.shippingAddress.createdBy">Created By</span></th>
-            <th><span jhiTranslate="goodsorderApp.shippingAddress.lastUpdatedBy">Last Updated By</span></th>
-            <th><span jhiTranslate="goodsorderApp.shippingAddress.user">User</span></th>
             <th></th>
             </tr>
             </thead>
@@ -44,13 +39,6 @@
                 <td>{{shippingAddress.city}}</td>
                 <td>{{shippingAddress.district}}</td>
                 <td>{{shippingAddress.defaultAddress}}</td>
-                <td>{{shippingAddress.createdAt | date:'medium'}}</td>
-                <td>{{shippingAddress.lastUpdatedAt | date:'medium'}}</td>
-                <td>{{shippingAddress.createdBy}}</td>
-                <td>{{shippingAddress.lastUpdatedBy}}</td>
-                <td>
-                    {{shippingAddress.user?.id}}
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

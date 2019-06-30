@@ -128,7 +128,7 @@ public class Order implements Serializable {
     @JoinColumn(unique = true)
     private Payment payment;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 

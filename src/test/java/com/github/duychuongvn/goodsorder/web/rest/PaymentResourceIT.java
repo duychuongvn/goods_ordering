@@ -45,7 +45,7 @@ public class PaymentResourceIT {
     private static final String UPDATED_PAYMENT_CODE = "BBBBBBBBBB";
 
     private static final PaymentStatus DEFAULT_PAYMENT_STATUS = PaymentStatus.PENDING;
-    private static final PaymentStatus UPDATED_PAYMENT_STATUS = PaymentStatus.PART_RECEIVED;
+    private static final PaymentStatus UPDATED_PAYMENT_STATUS = PaymentStatus.PART_PAID;
 
     private static final BigDecimal DEFAULT_RECEIVED_AMOUNT = new BigDecimal(1);
     private static final BigDecimal UPDATED_RECEIVED_AMOUNT = new BigDecimal(2);
@@ -230,7 +230,7 @@ public class PaymentResourceIT {
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
             .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getPayment() throws Exception {

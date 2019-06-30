@@ -36,7 +36,18 @@ public class ShippingAddressServiceImpl implements ShippingAddressService {
     @Override
     public ShippingAddress save(ShippingAddress shippingAddress) {
         log.debug("Request to save ShippingAddress : {}", shippingAddress);
+        removeDefaultAddress(shippingAddress);
         return shippingAddressRepository.save(shippingAddress);
+    }
+
+    private void removeDefaultAddress(ShippingAddress shippingAddress) {
+        if (shippingAddress.isDefaultAddress()) {
+            List<ShippingAddress> shippingAddresses = shippingAddressRepository.findByUserIsCurrentUser();
+            if (!shippingAddresses.isEmpty()) {
+                shippingAddresses.forEach(address -> address.setDefaultAddress(false));
+                shippingAddressRepository.saveAll(shippingAddresses);
+            }
+        }
     }
 
     /**
