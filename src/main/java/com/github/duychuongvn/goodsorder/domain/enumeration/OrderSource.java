@@ -6,8 +6,9 @@ package com.github.duychuongvn.goodsorder.domain.enumeration;
 public enum OrderSource {
 
     AEO_JP("AEOJP", "aeo.jp"),
-    ABC_MART("ABC_MART", "abc-mart.net");
-
+    ABC_MART("ABC_MART", "abc-mart.net"),
+    RAKUTEN("RAKUTEN", "rakuten.co.jp"),
+    ;
     private String domain;
     private String code;
 

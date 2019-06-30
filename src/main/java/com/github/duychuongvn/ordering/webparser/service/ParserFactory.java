@@ -14,6 +14,7 @@ public class ParserFactory {
 
         EXTRACTOR_MAP.put(OrderSource.AEO_JP, new AeoJPDataExtractImpl());
         EXTRACTOR_MAP.put(OrderSource.ABC_MART, new AbcMartDataExtractImpl());
+        EXTRACTOR_MAP.put(OrderSource.RAKUTEN, new RakutenDataExtractImpl());
     }
 
     private ParserFactory() {

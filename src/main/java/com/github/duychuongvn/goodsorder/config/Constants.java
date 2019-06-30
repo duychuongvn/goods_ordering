@@ -15,6 +15,7 @@ public final class Constants {
     public static final String SESSION_KEY_ORDER = "order";
     public static final String KEY_ORDER = "ORD";
     public static final String TAX_INCLUDED = "税込";
+    public static final String TAX_EXCLUDED = "税抜";
     private Constants() {
     }
 }

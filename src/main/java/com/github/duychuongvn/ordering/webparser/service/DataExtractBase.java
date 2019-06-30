@@ -18,7 +18,10 @@ public class DataExtractBase {
     }
 
     protected BigDecimal parsePrice(String price) {
-        String finalPrice = price.substring(0, price.indexOf("円")).replace(",", "");
+        String finalPrice = price.replace(",", "");
+        if (finalPrice.contains("円")) {
+            finalPrice = finalPrice.substring(0, price.indexOf("円"));
+        }
         return new BigDecimal(finalPrice);
     }
 }
