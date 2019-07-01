@@ -20,7 +20,7 @@ public class DataExtractBase {
     protected BigDecimal parsePrice(String price) {
         String finalPrice = price.replace(",", "");
         if (finalPrice.contains("円")) {
-            finalPrice = finalPrice.substring(0, price.indexOf("円"));
+            finalPrice = finalPrice.substring(0, finalPrice.indexOf("円"));
         }
         return new BigDecimal(finalPrice);
     }
