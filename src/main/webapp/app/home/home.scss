@@ -10,6 +10,14 @@ Main page styles
   background-size: contain;
 }
 
+.cs_fr-order--wrap {
+  display: flex;
+  flex: 1 1 auto;
+  height: calc(100vh - 170px);
+  align-items: center;
+  text-align: center;
+}
+
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (-moz-min-device-pixel-ratio: 2),

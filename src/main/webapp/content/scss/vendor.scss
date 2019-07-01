@@ -9,3 +9,16 @@ eg $input-color: red;
 @import '~bootstrap/scss/bootstrap';
 
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */
+
+.cs-form-control {
+  background: #fff;
+  display: flex;
+  border-radius: 8px;
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  margin: 0 auto;
+
+  &:focus {
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+  }
+}

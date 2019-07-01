@@ -4,7 +4,7 @@
       "home": {
         "title": "Order Line Items",
         "createLabel": "Create a new Order Line Item",
-        "createOrEditLabel": "Create or edit a Order Line Item"
+        "createOrEditLabel": "Paste the product link you want to buy here to order"
       },
       "created": "A new Order Line Item is created with identifier {{ param }}",
       "updated": "A Order Line Item is updated with identifier {{ param }}",

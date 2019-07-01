@@ -1,44 +1,134 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
-
-import { LoginModalService, AccountService, Account } from 'app/core';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import { IOrderLineItem, OrderLineItem } from 'app/shared/model/order-line-item.model';
+import { IOrder } from 'app/shared/model/order.model';
+import { OrderService } from 'app/entities/order';
+import { OrderLineItemService } from 'app/entities/order-line-item';
 
 @Component({
   selector: 'jhi-home',
   templateUrl: './home.component.html',
-  styleUrls: ['home.scss']
+  styleUrls: ['./home.scss']
 })
 export class HomeComponent implements OnInit {
-  account: Account;
-  modalRef: NgbModalRef;
-  referenceUrl: string;
+  orderLineItem: IOrderLineItem;
+  isSaving: boolean;
+
+  orders: IOrder[];
+
+  editForm = this.fb.group({
+    referenceUrl: [undefined, [Validators.required]]
+  });
+
   constructor(
-    private accountService: AccountService,
-    private loginModalService: LoginModalService,
-    private eventManager: JhiEventManager
+    protected dataUtils: JhiDataUtils,
+    protected jhiAlertService: JhiAlertService,
+    protected orderLineItemService: OrderLineItemService,
+    protected orderService: OrderService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.accountService.identity().then((account: Account) => {
-      this.account = account;
+    // this.isSaving = false;
+    // this.activatedRoute.data.subscribe(({ orderLineItem }) => {
+    //   if (orderLineItem) {
+    //     this.updateForm(orderLineItem);
+    //     this.orderLineItem = orderLineItem;
+    //   }
+    // });
+    // this.orderService
+    //   .query()
+    //   .pipe(
+    //     filter((mayBeOk: HttpResponse<IOrder[]>) => mayBeOk.ok),
+    //     map((response: HttpResponse<IOrder[]>) => response.body)
+    //   )
+    //   .subscribe((res: IOrder[]) => (this.orders = res), (res: HttpErrorResponse) => this.onError(res.message));
+  }
+
+  updateForm(orderLineItem: IOrderLineItem) {
+    this.editForm.patchValue({
+      id: orderLineItem.id,
+      referenceUrl: orderLineItem.referenceUrl
     });
-    this.registerAuthenticationSuccess();
   }
 
-  registerAuthenticationSuccess() {
-    this.eventManager.subscribe('authenticationSuccess', message => {
-      this.accountService.identity().then(account => {
-        this.account = account;
-      });
-    });
+  byteSize(field) {
+    return this.dataUtils.byteSize(field);
   }
 
-  isAuthenticated() {
-    return this.accountService.isAuthenticated();
+  openFile(contentType, field) {
+    return this.dataUtils.openFile(contentType, field);
   }
 
-  login() {
-    this.modalRef = this.loginModalService.open();
+  setFileData(event, field: string, isImage) {
+    return new Promise((resolve, reject) => {
+      if (event && event.target && event.target.files && event.target.files[0]) {
+        const file = event.target.files[0];
+        if (isImage && !/^image\//.test(file.type)) {
+          reject(`File was expected to be an image but was found to be ${file.type}`);
+        } else {
+          const filedContentType: string = field + 'ContentType';
+          this.dataUtils.toBase64(file, base64Data => {
+            this.editForm.patchValue({
+              [field]: base64Data,
+              [filedContentType]: file.type
+            });
+          });
+        }
+      } else {
+        reject(`Base64 data was not set as file could not be extracted from passed parameter: ${event}`);
+      }
+    }).then(
+      () => console.log('blob added'), // sucess
+      this.onError
+    );
+  }
+
+  previousState() {
+    window.history.back();
+  }
+
+  save() {
+    this.isSaving = true;
+    const orderLineItem = this.createFromForm();
+    if (orderLineItem.id !== undefined) {
+      this.subscribeToSaveResponse(this.orderLineItemService.update(orderLineItem));
+    } else {
+      this.subscribeToSaveResponse(this.orderLineItemService.create(orderLineItem));
+    }
+  }
+
+  private createFromForm(): IOrderLineItem {
+    const entity = {
+      ...new OrderLineItem(),
+      referenceUrl: this.editForm.get(['referenceUrl']).value
+    };
+    return entity;
+  }
+
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IOrderLineItem>>) {
+    result.subscribe((res: HttpResponse<IOrderLineItem>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+  }
+
+  protected onSaveSuccess() {
+    this.isSaving = false;
+    this.previousState();
+  }
+
+  protected onSaveError() {
+    this.isSaving = false;
+  }
+  protected onError(errorMessage: string) {
+    this.jhiAlertService.error(errorMessage, null, null);
+  }
+
+  trackOrderById(index: number, item: IOrder) {
+    return item.id;
   }
 }

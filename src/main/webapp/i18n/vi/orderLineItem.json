@@ -4,7 +4,7 @@
       "home": {
         "title": "Order Line Items",
         "createLabel": "Thêm mới một Order Line Item",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật Order Line Item"
+        "createOrEditLabel": "Dán liên kết sản phẩm bạn muốn mua ở đây để đặt hàng"
       },
       "created": "Một Order Line Item mới được tạo với định danh {{ param }}",
       "updated": "Một Order Line Item cập nhật với định danh {{ param }}",
