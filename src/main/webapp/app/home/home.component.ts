@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
     protected orderLineItemService: OrderLineItemService,
     protected orderService: OrderService,
     protected activatedRoute: ActivatedRoute,
+    protected router: Router,
     private fb: FormBuilder
   ) {}
 
@@ -85,7 +86,7 @@ export class HomeComponent implements OnInit {
         reject(`Base64 data was not set as file could not be extracted from passed parameter: ${event}`);
       }
     }).then(
-      () => console.log('blob added'), // sucess
+      () => console.log('blob added'), // success
       this.onError
     );
   }
@@ -113,12 +114,15 @@ export class HomeComponent implements OnInit {
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IOrderLineItem>>) {
-    result.subscribe((res: HttpResponse<IOrderLineItem>) => this.onSaveSuccess(), (res: HttpErrorResponse) => this.onSaveError());
+    result.subscribe(
+      (res: HttpResponse<IOrderLineItem>) => this.onSaveSuccess(res.body.id),
+      (res: HttpErrorResponse) => this.onSaveError()
+    );
   }
 
-  protected onSaveSuccess() {
+  protected onSaveSuccess(orderId: number) {
     this.isSaving = false;
-    this.previousState();
+    this.router.navigate(['order', orderId, 'view']);
   }
 
   protected onSaveError() {

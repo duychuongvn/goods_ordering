@@ -1,198 +1,184 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="order">
-            <h2><span jhiTranslate="goodsorderApp.order.detail.title">Order</span> {{order.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="goodsorderApp.order.paymentCode">Payment Code</span></dt>
-                <dd>
-                    <span>{{order.paymentCode}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.orderDate">Order Date</span></dt>
-                <dd>
-                    <span>{{order.orderDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.status">Status</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'goodsorderApp.OrderStatus.' + order.status}}">{{order.status}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.deliveryStatus">Delivery Status</span></dt>
-                <dd>
-                    <span jhiTranslate="{{'goodsorderApp.DeliveryStatus.' + order.deliveryStatus}}">{{order.deliveryStatus}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.exchangeDate">Exchange Date</span></dt>
-                <dd>
-                    <span>{{order.exchangeRateId}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.exchangeRate">Exchange Rate</span></dt>
-                <dd>
-                    <span>1 JPY = {{order.exchangeRate}} VND</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.totalJpyPrice">Total Jpy Price</span></dt>
-                <dd>
-                    <span>{{order.totalJpyPrice}} JPY</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.deliveryFeeVnd">Delivery Fee Vnd</span></dt>
-                <dd>
-                    <span>{{order.deliveryFeeVnd}} VND</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.totalPayVnd">Total Pay Vnd</span></dt>
-                <dd>
-                    <span>{{order.totalPayVnd}} VND</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.depositedVnd">Deposited Vnd</span></dt>
-                <dd>
-                    <span>{{order.depositedVnd}} VND</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.paidVnd">Paid Vnd</span></dt>
-                <dd>
-                    <span>{{order.paidVnd}} VND</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.packingDate">Packing Date</span></dt>
-                <dd>
-                    <span>{{order.packingDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.estimatedDeliverDate">Estimated Deliver Date</span></dt>
-                <dd>
-                    <span>{{order.estimatedDeliverDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.deliveredDate">Delivered Date</span></dt>
-                <dd>
-                    <span>{{order.deliveredDate}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.finishPaymentTime">Finish Payment Time</span></dt>
-                <dd>
-                    <span>{{order.finishPaymentTime}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.remark">Remark</span></dt>
-                <dd>
-                    <span>{{order.remark}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.address1">Address 1</span></dt>
-                <dd>
-                    <span>{{order.address1}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.address2">Address 2</span></dt>
-                <dd>
-                    <span>{{order.address2}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.phone1">Phone 1</span></dt>
-                <dd>
-                    <span>{{order.phone1}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.phone2">Phone 2</span></dt>
-                <dd>
-                    <span>{{order.phone2}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.email">Email</span></dt>
-                <dd>
-                    <span>{{order.email}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.zipCode">Zip Code</span></dt>
-                <dd>
-                    <span>{{order.zipCode}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.city">City</span></dt>
-                <dd>
-                    <span>{{order.city}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.district">District</span></dt>
-                <dd>
-                    <span>{{order.district}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.createdAt">Created At</span></dt>
-                <dd>
-                    <span>{{order.createdAt}}</span>
-                </dd>
-                <dt><span jhiTranslate="goodsorderApp.order.payment">Payment</span></dt>
-                <dd>
-                    <div *ngIf="order.payment">
-                        <a [routerLink]="['/payment', order.payment?.id, 'view']">{{order.payment?.id}}</a>
-                    </div>
-                </dd>
-                <dd>
-                    <div class="table-responsive" *ngIf="order.orderLineItems">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th><span jhiTranslate="global.field.id">ID</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.referenceUrl">Reference Url</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.originPrice">Origin Price</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.salePrice">Sale Price</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.tax">Tax</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.totalPay">Total Pay</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.goodsName">Goods Name</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.goodsId">Goods Id</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.size">Size</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.quantity">Quantity</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.remark">Remark</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.images">Images</span></th>
-                                <th><span jhiTranslate="goodsorderApp.orderLineItem.source">Source</span></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let orderLineItem of order.orderLineItems ;trackBy: trackId">
-                                <td><a [routerLink]="['/order-line-item', orderLineItem.id, 'view' ]">{{orderLineItem.id}}</a></td>
-                                <td><a href="{{orderLineItem.referenceUrl}}" target="_blank">{{orderLineItem.referenceUrl}}</a> </td>
-                                <td>{{orderLineItem.originPrice}} JPY</td>
-                                <td>{{orderLineItem.salePrice}} JPY</td>
-                                <td>{{orderLineItem.tax}} JPY</td>
-                                <td>{{orderLineItem.totalPay}} JPY</td>
-                                <td>{{orderLineItem.goodsName}}</td>
-                                <td>{{orderLineItem.goodsId}}</td>
-                                <td>{{orderLineItem.size}}</td>
-                                <td>{{orderLineItem.quantity}}</td>
-                                <td>{{orderLineItem.remark}}</td>
-                                <td>
-                                    <div *ngIf="orderLineItem.images">
-                                        <img width="50px" height="50px" src="{{orderLineItem.images[0]}}">
-                                    </div>
-                                </td>
-                                <td jhiTranslate="{{'goodsorderApp.OrderSource.' + orderLineItem.source}}">{{orderLineItem.source}}</td>
-                                <td class="text-right">
-                                    <div class="btn-group">
-                                        <button type="submit"
-                                                [routerLink]="['/order-line-item', orderLineItem.id, 'view' ]"
-                                                class="btn btn-info btn-sm">
-                                            <fa-icon [icon]="'eye'"></fa-icon>
-                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                                        </button>
-                                        <button type="submit"
-                                                [routerLink]="['/order-line-item', orderLineItem.id, 'edit']"
-                                                class="btn btn-primary btn-sm">
-                                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                                        </button>
-                                        <button type="submit"
-                                                [routerLink]="['/', 'order-line-item', { outlets: { popup: orderLineItem.id + '/delete'} }]"
-                                                replaceUrl="true"
-                                                queryParamsHandling="merge"
-                                                class="btn btn-danger btn-sm">
-                                            <fa-icon [icon]="'times'"></fa-icon>
-                                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </dd>
-            </dl>
+<div class="container-fluid">
+  <div *ngIf="order">
+    <h2>
+      <span jhiTranslate="goodsorderApp.order.paymentCode">Payment Code</span>: <strong>{{ order.paymentCode }}</strong>
+    </h2>
+    <hr />
+    <jhi-alert-error></jhi-alert-error>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
+    <div class="row">
+      <div class="col-6">
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="goodsorderApp.order.orderDate">Order Date</span></dt>
+          <dd>
+            <span>{{ order.orderDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.status">Status</span></dt>
+          <dd>
+            <span jhiTranslate="{{ 'goodsorderApp.OrderStatus.' + order.status }}">{{ order.status }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.deliveryStatus">Delivery Status</span></dt>
+          <dd>
+            <span jhiTranslate="{{ 'goodsorderApp.DeliveryStatus.' + order.deliveryStatus }}">{{ order.deliveryStatus }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.exchangeRate">Exchange Rate</span></dt>
+          <dd>
+            <span>1 JPY = {{ order.exchangeRate }} VND (Date: {{ order.exchangeRateId }})</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.totalJpyPrice">Total Jpy Price</span></dt>
+          <dd>
+            <span>{{ order.totalJpyPrice }} JPY</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.deliveryFeeVnd">Delivery Fee Vnd</span></dt>
+          <dd>
+            <span>{{ order.deliveryFeeVnd }} VND</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.totalPayVnd">Total Pay Vnd</span></dt>
+          <dd>
+            <span>{{ order.totalPayVnd }} VND</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.packingDate">Packing Date</span></dt>
+          <dd>
+            <span>{{ order.packingDate | date: 'yyyy/MM/dd' }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.estimatedDeliverDate">Estimated Deliver Date</span></dt>
+          <dd>
+            <span>{{ order.estimatedDeliverDate | date: 'yyyy/MM/dd' }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.deliveredDate">Delivered Date</span></dt>
+          <dd>
+            <span>{{ order.deliveredDate | date: 'yyyy/MM/dd' }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.finishPaymentTime">Finish Payment Time</span></dt>
+          <dd>
+            <span>{{ order.finishPaymentTime }}</span>
+          </dd>
+        </dl>
+      </div>
+      <div class="col-6">
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="goodsorderApp.order.remark">Remark</span></dt>
+          <dd>
+            <textarea name="remark" rows="4" class="form-control" [(ngModel)]="order.remark"></textarea>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.address1">Address 1</span></dt>
+          <dd>
+            <input type="text" title="address1" name="address1" class="form-control" [(ngModel)]="order.address1" />
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.address2">Address 2</span></dt>
+          <dd>
+            <input type="text" title="address2" name="address2" class="form-control" [(ngModel)]="order.address2" />
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.phone1">Phone 1</span></dt>
+          <dd>
+            <input type="text" title="phone1" name="phone1" class="form-control" [(ngModel)]="order.phone1" />
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.phone2">Phone 2</span></dt>
+          <dd>
+            <input type="text" title="phone2" name="phone2" class="form-control" [(ngModel)]="order.phone2" />
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.email">Email</span></dt>
+          <dd>
+            <input type="email" title="email" name="email" class="form-control" [(ngModel)]="order.email" />
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.zipCode">Zip Code</span></dt>
+          <dd>
+            <input type="text" title="zipCode" name="zipCode" class="form-control" [(ngModel)]="order.zipCode" />
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.city">City</span></dt>
+          <dd>
+            <input type="text" title="city" name="city" class="form-control" [(ngModel)]="order.city" />
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.district">District</span></dt>
+          <dd>
+            <input type="text" title="district" name="district" class="form-control" [(ngModel)]="order.district" />
+          </dd>
+        </dl>
+      </div>
 
-            <button type="button"
-                    [routerLink]="['/order', order.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+      <div class="col-12">
+        <div class="table-responsive" *ngIf="order.orderLineItems">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <!--<th><span jhiTranslate="global.field.id">ID</span></th>-->
+                <th width="100px"><span jhiTranslate="goodsorderApp.orderLineItem.images">Images</span></th>
+                <th width="200px"><span jhiTranslate="goodsorderApp.orderLineItem.goodsName">Goods Name</span></th>
+                <!--<th><span jhiTranslate="goodsorderApp.orderLineItem.originPrice">Origin Price</span></th>-->
+                <!--<th><span jhiTranslate="goodsorderApp.orderLineItem.salePrice">Price</span></th>-->
+                <!--<th><span jhiTranslate="goodsorderApp.orderLineItem.tax">Tax</span></th>-->
+                <th><span jhiTranslate="goodsorderApp.orderLineItem.totalPay">Total Pay (include Tax)</span></th>
+                <!--<th><span jhiTranslate="goodsorderApp.orderLineItem.goodsName">Goods Name</span></th>-->
+                <!--<th><span jhiTranslate="goodsorderApp.orderLineItem.goodsId">Goods Id</span></th>-->
+                <th width="100px"><span jhiTranslate="goodsorderApp.orderLineItem.size">Size</span></th>
+                <th width="100px"><span jhiTranslate="goodsorderApp.orderLineItem.quantity">Quantity</span></th>
+                <th><span jhiTranslate="goodsorderApp.orderLineItem.remark">Remark</span></th>
+                <!--<th><span jhiTranslate="goodsorderApp.orderLineItem.source">Source</span></th>-->
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let orderLineItem of order.orderLineItems; trackBy: trackId">
+                <td>
+                  <div *ngIf="orderLineItem.images">
+                    <img width="50px" height="50px" src="{{ orderLineItem.images[0] }}" />
+                  </div>
+                </td>
+                <!--<td><a [routerLink]="['/order-line-item', orderLineItem.id, 'view' ]">{{orderLineItem.id}}</a></td>-->
+                <td>
+                  <a href="{{ orderLineItem.referenceUrl }}" target="_blank">{{ orderLineItem.goodsName }}</a>
+                </td>
+                <!--<td>{{orderLineItem.originPrice}} JPY</td>-->
+                <!--<td>{{orderLineItem.salePrice}} JPY</td>-->
+                <!--<td>{{orderLineItem.tax}} JPY</td>-->
+                <td>{{ orderLineItem.totalPay }} JPY</td>
+                <!--<td>{{orderLineItem.goodsName}}</td>-->
+                <!--<td>{{orderLineItem.goodsId}}</td>-->
+                <td><input type="text" title="order-size" name="orderSize" class="form-control" [(ngModel)]="orderLineItem.size" /></td>
+                <td>
+                  <input type="number" title="order-quantity" name="orderSize" class="form-control" [(ngModel)]="orderLineItem.quantity" />
+                </td>
+                <td>
+                  <textarea title="order-remark" name="orderRemark" class="form-control" [(ngModel)]="orderLineItem.remark"></textarea>
+                </td>
+                <!--<td jhiTranslate="{{'goodsorderApp.OrderSource.' + orderLineItem.source}}">{{orderLineItem.source}}</td>-->
+                <td class="text-right">
+                  <div class="btn-group">
+                    <button type="button" [routerLink]="['/order-line-item', orderLineItem.id, 'view']" class="btn btn-info btn-sm">
+                      <fa-icon [icon]="'eye'"></fa-icon>
+                      <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>-->
+                    </button>
+                    <!--<button type="submit"-->
+                    <!--[routerLink]="['/order-line-item', orderLineItem.id, 'edit']"-->
+                    <!--class="btn btn-primary btn-sm">-->
+                    <!--<fa-icon [icon]="'pencil-alt'"></fa-icon>-->
+                    <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>-->
+                    <!--</button>-->
+                    <button
+                      type="button"
+                      [routerLink]="['/', 'order-line-item', { outlets: { popup: orderLineItem.id + '/delete' } }]"
+                      replaceUrl="true"
+                      queryParamsHandling="merge"
+                      class="btn btn-danger btn-sm"
+                    >
+                      <fa-icon [icon]="'times'"></fa-icon>
+                      <!--<span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>-->
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
+
+    <button type="submit" (click)="previousState()" class="btn btn-info">
+      <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <!--<button type="button" [routerLink]="['/order', order.id, 'edit']" class="btn btn-primary">-->
+    <!--<fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>-->
+    <!--</button>-->
+  </div>
 </div>
