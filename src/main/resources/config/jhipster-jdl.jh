@@ -144,6 +144,24 @@ entity ExchangeRate {
   lastUpdatedBy String
 }
 
+entity OrderSchedule {
+    id Long required
+    openDate LocalDate
+    closeDate LocalDate
+    expectedPackingDate LocalDate
+    expectedDeliveryDate LocalDate
+    maxOrderNumber Integer
+    currentOrderNumber Integer
+    status OrderScheduleStatus
+    createdAt ZonedDateTime
+    lastUpdatedAt ZonedDateTime
+    createdBy String
+    lastUpdatedBy String
+}
+
+enum OrderScheduleStatus {
+     OPEN, CLOSED
+}
 relationship OneToOne {
     Order {payment} to Payment
     Payment {order} to Order
@@ -162,7 +180,7 @@ relationship OneToMany {
 
 // Use Data Transfert Objects (DTO)
 // dto * with mapstruct
-
+paginate Order with pagination
 // Set service options to all except few
 service all with serviceImpl
 

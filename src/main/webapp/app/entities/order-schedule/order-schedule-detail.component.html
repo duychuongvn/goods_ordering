@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="orderSchedule">
+            <h2><span jhiTranslate="goodsorderApp.orderSchedule.detail.title">Order Schedule</span> {{orderSchedule.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.openDate">Open Date</span></dt>
+                <dd>
+                    <span>{{orderSchedule.openDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.closeDate">Close Date</span></dt>
+                <dd>
+                    <span>{{orderSchedule.closeDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.expectedPackingDate">Expected Packing Date</span></dt>
+                <dd>
+                    <span>{{orderSchedule.expectedPackingDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.expectedDeliveryDate">Expected Delivery Date</span></dt>
+                <dd>
+                    <span>{{orderSchedule.expectedDeliveryDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.maxOrderNumber">Max Order Number</span></dt>
+                <dd>
+                    <span>{{orderSchedule.maxOrderNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.currentOrderNumber">Current Order Number</span></dt>
+                <dd>
+                    <span>{{orderSchedule.currentOrderNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.status">Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'goodsorderApp.OrderScheduleStatus.' + orderSchedule.status}}">{{orderSchedule.status}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{orderSchedule.createdAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.lastUpdatedAt">Last Updated At</span></dt>
+                <dd>
+                    <span>{{orderSchedule.lastUpdatedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{orderSchedule.createdBy}}</span>
+                </dd>
+                <dt><span jhiTranslate="goodsorderApp.orderSchedule.lastUpdatedBy">Last Updated By</span></dt>
+                <dd>
+                    <span>{{orderSchedule.lastUpdatedBy}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/order-schedule', orderSchedule.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

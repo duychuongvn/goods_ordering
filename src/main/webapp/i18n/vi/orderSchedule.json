@@ -1,0 +1,31 @@
+{
+  "goodsorderApp": {
+    "orderSchedule": {
+      "home": {
+        "title": "Order Schedules",
+        "createLabel": "Thêm mới một Order Schedule",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Order Schedule"
+      },
+      "created": "Một Order Schedule mới được tạo với định danh {{ param }}",
+      "updated": "Một Order Schedule cập nhật với định danh {{ param }}",
+      "deleted": "Một Order Schedule đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Order Schedule {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Schedule"
+      },
+      "openDate": "Open Date",
+      "closeDate": "Close Date",
+      "expectedPackingDate": "Expected Packing Date",
+      "expectedDeliveryDate": "Expected Delivery Date",
+      "maxOrderNumber": "Max Order Number",
+      "currentOrderNumber": "Current Order Number",
+      "status": "Status",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-order-schedule-heading" jhiTranslate="goodsorderApp.orderSchedule.home.createOrEditLabel">Create or edit a Order Schedule</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!orderSchedule.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.openDate" for="field_openDate">Open Date</label>
+                    <div class="input-group">
+                        <input id="field_openDate" type="text" class="form-control" name="openDate" ngbDatepicker  #openDateDp="ngbDatepicker" formControlName="openDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="openDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.closeDate" for="field_closeDate">Close Date</label>
+                    <div class="input-group">
+                        <input id="field_closeDate" type="text" class="form-control" name="closeDate" ngbDatepicker  #closeDateDp="ngbDatepicker" formControlName="closeDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="closeDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.expectedPackingDate" for="field_expectedPackingDate">Expected Packing Date</label>
+                    <div class="input-group">
+                        <input id="field_expectedPackingDate" type="text" class="form-control" name="expectedPackingDate" ngbDatepicker  #expectedPackingDateDp="ngbDatepicker" formControlName="expectedPackingDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="expectedPackingDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.expectedDeliveryDate" for="field_expectedDeliveryDate">Expected Delivery Date</label>
+                    <div class="input-group">
+                        <input id="field_expectedDeliveryDate" type="text" class="form-control" name="expectedDeliveryDate" ngbDatepicker  #expectedDeliveryDateDp="ngbDatepicker" formControlName="expectedDeliveryDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="expectedDeliveryDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.maxOrderNumber" for="field_maxOrderNumber">Max Order Number</label>
+                    <input type="number" class="form-control" name="maxOrderNumber" id="field_maxOrderNumber"
+                           formControlName="maxOrderNumber"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.currentOrderNumber" for="field_currentOrderNumber">Current Order Number</label>
+                    <input type="number" class="form-control" name="currentOrderNumber" id="field_currentOrderNumber"
+                           formControlName="currentOrderNumber"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.status" for="field_status">Status</label>
+                    <select class="form-control" name="status" formControlName="status" id="field_status">
+                        <option value="OPEN">{{'goodsorderApp.OrderScheduleStatus.OPEN' | translate}}</option>
+                        <option value="CLOSED">{{'goodsorderApp.OrderScheduleStatus.CLOSED' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.createdAt" for="field_createdAt">Created At</label>
+                    <div class="d-flex">
+                        <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" formControlName="createdAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.lastUpdatedAt" for="field_lastUpdatedAt">Last Updated At</label>
+                    <div class="d-flex">
+                        <input id="field_lastUpdatedAt" type="datetime-local" class="form-control" name="lastUpdatedAt" formControlName="lastUpdatedAt" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.createdBy" for="field_createdBy">Created By</label>
+                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                           formControlName="createdBy"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="goodsorderApp.orderSchedule.lastUpdatedBy" for="field_lastUpdatedBy">Last Updated By</label>
+                    <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                           formControlName="lastUpdatedBy"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

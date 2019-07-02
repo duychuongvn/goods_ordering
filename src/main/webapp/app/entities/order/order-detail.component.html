@@ -108,8 +108,6 @@
                 <dt><span jhiTranslate="goodsorderApp.order.payment">Payment</span></dt>
                 <dd>
                     <div *ngIf="order.payment">
-                        <span>{{order.payment.paymentStatus}} </span>
-                        <span>{{order.payment.receivedAmount}} VND</span>
                         <a [routerLink]="['/payment', order.payment?.id, 'view']">{{order.payment?.id}}</a>
                     </div>
                 </dd>

@@ -1,21 +1,29 @@
 package com.github.duychuongvn.goodsorder.web.rest;
 
-import com.github.duychuongvn.goodsorder.config.Constants;
 import com.github.duychuongvn.goodsorder.domain.Order;
 import com.github.duychuongvn.goodsorder.service.OrderService;
+import com.github.duychuongvn.goodsorder.web.rest.dto.UpdateOrderDto;
 import com.github.duychuongvn.goodsorder.web.rest.errors.BadRequestAlertException;
+
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -68,26 +76,47 @@ public class OrderResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/orders")
-    public ResponseEntity<Order> updateOrder(@Valid @RequestBody Order order) throws URISyntaxException {
+    public ResponseEntity<Order> updateOrder(@Valid @RequestBody UpdateOrderDto order) throws URISyntaxException {
         log.debug("REST request to update Order : {}", order);
         if (order.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        Order result = orderService.save(order);
+
+        Optional<Order> updateOrderOptional = orderService.findOne(order.getId());
+        if(!updateOrderOptional.isPresent()) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "orderNotExist");
+        }
+
+        Order updateOrder = updateOrderOptional.get();
+        updateOrder.setEmail(order.getEmail());
+        updateOrder.setAddress1(order.getAddress1());
+        updateOrder.setAddress2(order.getAddress2());
+        updateOrder.setPhone1(order.getPhone1());
+        updateOrder.setPhone2(order.getPhone2());
+        updateOrder.setEmail(order.getEmail());
+        updateOrder.setRemark(order.getRemark());
+
+        Order result = orderService.save(updateOrder);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, order.getId().toString()))
             .body(result);
     }
 
+
+
+
     /**
      * {@code GET  /orders} : get all the orders.
      *
+     * @param pageable the pagination information.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of orders in body.
      */
     @GetMapping("/orders")
-    public List<Order> getAllOrders() {
-        log.debug("REST request to get all Orders");
-        return orderService.findByCurrentUser();
+    public ResponseEntity<List<Order>> getAllOrders(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of Orders");
+        Page<Order> page = orderService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(uriBuilder.queryParams(queryParams), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**
@@ -102,14 +131,6 @@ public class OrderResource {
         Optional<Order> order = orderService.findOne(id);
         return ResponseUtil.wrapOrNotFound(order);
     }
-
-    @GetMapping("/orders/initialized")
-    public ResponseEntity<Order> getInitializedOrder(@PathVariable Long id, HttpSession session) {
-        log.debug("REST request to get initialized Order : {}", id);
-        Order order = (Order) session.getAttribute(Constants.SESSION_KEY_ORDER);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(order));
-    }
-
 
     /**
      * {@code DELETE  /orders/:id} : delete the "id" order.

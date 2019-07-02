@@ -1,0 +1,31 @@
+{
+  "goodsorderApp": {
+    "orderSchedule": {
+      "home": {
+        "title": "Order Schedules",
+        "createLabel": "Create a new Order Schedule",
+        "createOrEditLabel": "Create or edit a Order Schedule"
+      },
+      "created": "A new Order Schedule is created with identifier {{ param }}",
+      "updated": "A Order Schedule is updated with identifier {{ param }}",
+      "deleted": "A Order Schedule is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Order Schedule {{ id }}?"
+      },
+      "detail": {
+        "title": "Order Schedule"
+      },
+      "openDate": "Open Date",
+      "closeDate": "Close Date",
+      "expectedPackingDate": "Expected Packing Date",
+      "expectedDeliveryDate": "Expected Delivery Date",
+      "maxOrderNumber": "Max Order Number",
+      "currentOrderNumber": "Current Order Number",
+      "status": "Status",
+      "createdAt": "Created At",
+      "lastUpdatedAt": "Last Updated At",
+      "createdBy": "Created By",
+      "lastUpdatedBy": "Last Updated By"
+    }
+  }
+}

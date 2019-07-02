@@ -1,0 +1,60 @@
+{
+    "name": "OrderSchedule",
+    "fields": [
+        {
+            "fieldName": "openDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "closeDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "expectedPackingDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "expectedDeliveryDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "maxOrderNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "currentOrderNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "OrderScheduleStatus",
+            "fieldValues": "OPEN,CLOSED"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "lastUpdatedAt",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190701145437",
+    "entityTableName": "order_schedule",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

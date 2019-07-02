@@ -42,11 +42,11 @@
                 <td jhiTranslate="{{'goodsorderApp.DeliveryStatus.' + order.deliveryStatus}}">{{order.deliveryStatus}}</td>
                 <td>{{order.exchangeRateId}}</td>
                 <td>{{order.exchangeRate}}</td>
-                <td>{{order.totalJpyPrice}} JPY</td>
-                <td>{{order.deliveryFeeVnd}} VND</td>
-                <td>{{order.totalPayVnd}} VND</td>
-                <td>{{order.depositedVnd}} VND</td>
-                <td>{{order.paidVnd}} VND</td>
+                <td>{{order.totalJpyPrice}}</td>
+                <td>{{order.deliveryFeeVnd}}</td>
+                <td>{{order.totalPayVnd}}</td>
+                <td>{{order.depositedVnd}}</td>
+                <td>{{order.paidVnd}}</td>
                 <td>{{order.packingDate | date:'mediumDate'}}</td>
                 <td>{{order.estimatedDeliverDate | date:'mediumDate'}}</td>
                 <td>{{order.deliveredDate | date:'mediumDate'}}</td>
@@ -78,5 +78,13 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <div *ngIf="orders && orders.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
     </div>
 </div>

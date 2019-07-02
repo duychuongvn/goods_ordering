@@ -127,9 +127,6 @@
             <column name="last_updated_by" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="payment_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_jhi_order_payment_id" />
-            </column>
             <column name="user_id" type="bigint">
                 <constraints nullable="true" />
             </column>

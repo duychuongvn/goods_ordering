@@ -124,8 +124,7 @@ public class Order implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(mappedBy = "order")
     private Payment payment;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)

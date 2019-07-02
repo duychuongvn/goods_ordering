@@ -164,7 +164,7 @@
     "changelogDate": "20190629044415",
     "entityTableName": "order",
     "dto": "no",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,

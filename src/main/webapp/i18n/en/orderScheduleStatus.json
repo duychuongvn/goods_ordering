@@ -1,0 +1,9 @@
+{
+  "goodsorderApp": {
+    "OrderScheduleStatus": {
+      "null": "",
+      "OPEN": "OPEN",
+      "CLOSED": "CLOSED"
+    }
+  }
+}
