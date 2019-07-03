@@ -1,101 +1,17 @@
 <div class="container-fluid">
   <div *ngIf="order">
-    <h2>
-      <span jhiTranslate="goodsorderApp.order.paymentCode">Payment Code</span>: <strong>{{ order.paymentCode }}</strong>
+    <h2 class="d-flex justify-content-between align-items-center">
+      <span>
+        <span jhiTranslate="goodsorderApp.order.paymentCode">Payment Code</span>:
+        <strong>{{ order.paymentCode }}</strong>
+        <span class="badge badge-primary" jhiTranslate="{{ 'goodsorderApp.OrderStatus.' + order.status }}">{{ order.status }}</span>
+      </span>
+      <span>{{ order.orderDate | date: 'LLL, dd-yyyy hh:mm' }}</span>
     </h2>
     <hr />
     <jhi-alert-error></jhi-alert-error>
 
     <div class="row">
-      <div class="col-6">
-        <dl class="row-md jh-entity-details">
-          <dt><span jhiTranslate="goodsorderApp.order.orderDate">Order Date</span></dt>
-          <dd>
-            <span>{{ order.orderDate }}</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.status">Status</span></dt>
-          <dd>
-            <span jhiTranslate="{{ 'goodsorderApp.OrderStatus.' + order.status }}">{{ order.status }}</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.deliveryStatus">Delivery Status</span></dt>
-          <dd>
-            <span jhiTranslate="{{ 'goodsorderApp.DeliveryStatus.' + order.deliveryStatus }}">{{ order.deliveryStatus }}</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.exchangeRate">Exchange Rate</span></dt>
-          <dd>
-            <span>1 JPY = {{ order.exchangeRate }} VND (Date: {{ order.exchangeRateId }})</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.totalJpyPrice">Total Jpy Price</span></dt>
-          <dd>
-            <span>{{ order.totalJpyPrice }} JPY</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.deliveryFeeVnd">Delivery Fee Vnd</span></dt>
-          <dd>
-            <span>{{ order.deliveryFeeVnd }} VND</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.totalPayVnd">Total Pay Vnd</span></dt>
-          <dd>
-            <span>{{ order.totalPayVnd }} VND</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.packingDate">Packing Date</span></dt>
-          <dd>
-            <span>{{ order.packingDate | date: 'yyyy/MM/dd' }}</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.estimatedDeliverDate">Estimated Deliver Date</span></dt>
-          <dd>
-            <span>{{ order.estimatedDeliverDate | date: 'yyyy/MM/dd' }}</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.deliveredDate">Delivered Date</span></dt>
-          <dd>
-            <span>{{ order.deliveredDate | date: 'yyyy/MM/dd' }}</span>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.finishPaymentTime">Finish Payment Time</span></dt>
-          <dd>
-            <span>{{ order.finishPaymentTime }}</span>
-          </dd>
-        </dl>
-      </div>
-      <div class="col-6">
-        <dl class="row-md jh-entity-details">
-          <dt><span jhiTranslate="goodsorderApp.order.remark">Remark</span></dt>
-          <dd>
-            <textarea name="remark" rows="4" class="form-control" [(ngModel)]="order.remark"></textarea>
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.address1">Address 1</span></dt>
-          <dd>
-            <input type="text" title="address1" name="address1" class="form-control" [(ngModel)]="order.address1" />
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.address2">Address 2</span></dt>
-          <dd>
-            <input type="text" title="address2" name="address2" class="form-control" [(ngModel)]="order.address2" />
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.phone1">Phone 1</span></dt>
-          <dd>
-            <input type="text" title="phone1" name="phone1" class="form-control" [(ngModel)]="order.phone1" />
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.phone2">Phone 2</span></dt>
-          <dd>
-            <input type="text" title="phone2" name="phone2" class="form-control" [(ngModel)]="order.phone2" />
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.email">Email</span></dt>
-          <dd>
-            <input type="email" title="email" name="email" class="form-control" [(ngModel)]="order.email" />
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.zipCode">Zip Code</span></dt>
-          <dd>
-            <input type="text" title="zipCode" name="zipCode" class="form-control" [(ngModel)]="order.zipCode" />
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.city">City</span></dt>
-          <dd>
-            <input type="text" title="city" name="city" class="form-control" [(ngModel)]="order.city" />
-          </dd>
-          <dt><span jhiTranslate="goodsorderApp.order.district">District</span></dt>
-          <dd>
-            <input type="text" title="district" name="district" class="form-control" [(ngModel)]="order.district" />
-          </dd>
-        </dl>
-      </div>
-
       <div class="col-12">
         <div class="table-responsive" *ngIf="order.orderLineItems">
           <table class="table table-striped">
@@ -134,7 +50,7 @@
                 <td>{{ orderLineItem.totalPay }} JPY</td>
                 <!--<td>{{orderLineItem.goodsName}}</td>-->
                 <!--<td>{{orderLineItem.goodsId}}</td>-->
-                <td><input type="text" title="order-size" name="orderSize" class="form-control" [(ngModel)]="orderLineItem.size" /></td>
+                <td><input type="text" title="order-size" name="orderSize" class="form-control" [(ngModel)]="orderLineItem.size" required/></td>
                 <td>
                   <input type="number" title="order-quantity" name="orderSize" class="form-control" [(ngModel)]="orderLineItem.quantity" />
                 </td>
@@ -169,6 +85,119 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="goodsorderApp.order.deliveryStatus">Delivery Status</span></dt>
+          <dd>
+            <span jhiTranslate="{{ 'goodsorderApp.DeliveryStatus.' + order.deliveryStatus }}">{{ order.deliveryStatus }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.exchangeRate">Exchange Rate</span></dt>
+          <dd>
+            <span>1 JPY = {{ order.exchangeRate }} VND (Date: {{ order.exchangeRateId }})</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.totalJpyPrice">Total Jpy Price</span></dt>
+          <dd>
+            <span>{{ order.totalJpyPrice }} JPY</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.deliveryFeeVnd">Delivery Fee Vnd</span></dt>
+          <dd>
+            <span>{{ order.deliveryFeeVnd }} VND</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.totalPayVnd">Total Pay Vnd</span></dt>
+          <dd>
+            <span>{{ order.totalPayVnd }} VND</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.packingDate">Packing Date</span></dt>
+          <dd>
+            <span>{{ order.packingDate | date: 'yyyy/MM/dd' }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.estimatedDeliverDate">Estimated Deliver Date</span></dt>
+          <dd>
+            <span>{{ order.estimatedDeliverDate | date: 'yyyy/MM/dd' }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.deliveredDate">Delivered Date</span></dt>
+          <dd>
+            <span>{{ order.deliveredDate | date: 'yyyy/MM/dd' }}</span>
+          </dd>
+          <dt><span jhiTranslate="goodsorderApp.order.finishPaymentTime">Finish Payment Time</span></dt>
+          <dd>
+            <span>{{ order.finishPaymentTime }}</span>
+          </dd>
+        </dl>
+      </div>
+      <div class="col-12 col-md-6">
+        <!-- Remark -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.remark">Remark</label>
+          <div class="col-10">
+            <textarea name="remark" rows="4" class="form-control" [(ngModel)]="order.remark"></textarea>
+          </div>
+        </div>
+
+        <!-- Address 1 -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.address1">Address 1</label>
+          <div class="col-10">
+            <input type="text" title="address1" name="address1" class="form-control" [(ngModel)]="order.address1" />
+          </div>
+        </div>
+
+        <!-- Address 2 -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.address2">Address 2</label>
+          <div class="col-10">
+            <input type="text" title="address2" name="address2" class="form-control" [(ngModel)]="order.address2" />
+          </div>
+        </div>
+
+        <!-- Phone 1 -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.phone1">Phone 1</label>
+          <div class="col-10">
+            <input type="text" title="phone1" name="phone1" class="form-control" [(ngModel)]="order.phone1" />
+          </div>
+        </div>
+
+        <!-- Phone 2 -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.phone2">Phone 2</label>
+          <div class="col-10">
+            <input type="text" title="phone2" name="phone2" class="form-control" [(ngModel)]="order.phone2" />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.phone2">Email</label>
+          <div class="col-10">
+            <input type="email" title="email" name="email" class="form-control" [(ngModel)]="order.email" />
+          </div>
+        </div>
+
+        <!-- Zip Code -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.zipCode">Zip Code</label>
+          <div class="col-10">
+            <input type="text" title="zipCode" name="zipCode" class="form-control" [(ngModel)]="order.zipCode" />
+          </div>
+        </div>
+
+        <!-- City -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.city">City</label>
+          <div class="col-10">
+            <input type="text" title="city" name="city" class="form-control" [(ngModel)]="order.city" />
+          </div>
+        </div>
+
+        <!-- District -->
+        <div class="form-group row">
+          <label class="col-2 col-form-label" jhiTranslate="goodsorderApp.order.district">District</label>
+          <div class="col-10">
+            <input type="text" title="district" name="district" class="form-control" [(ngModel)]="order.district" />
+          </div>
         </div>
       </div>
     </div>
